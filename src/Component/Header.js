@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import HomeIcon from "@mui/icons-material/Home";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import Badge from "@mui/material/Badge";
 import axios from "axios";
 // import { useAuth0 } from "@auth0/auth0-react";
 import Button from "@mui/material/Button";
@@ -24,86 +22,6 @@ const Header = () => {
   // user
   // const { user, getAccessTokenSilently } = useAuth0();
   // const [isRegistering, setRegistering] = useState(false);
-  // const { setAdmin } = useAdminContext();
-  // const { userDetails, setUserDetails } = useUserContext();
-
-  // useEffect(() => {
-  //   const getShoppingCart = async () => {
-  //     // to be activated once the userAutho is ready (Zi Hao side)
-  //     // samuel, this needs to be activated when user add item into cart also. maybe use useContext for this one. when user log in, axios.get shopping cart --> then pass the .length here.
-  //     if (user) {
-  //       //admin role
-  //       if (user.sub === process.env.REACT_APP_ADMIN_ID_ONE) {
-  //         setAdmin(true);
-  //       }
-  //       if (user.sub !== process.env.REACT_APP_ADMIN_ID_ONE) {
-  //         setAdmin(false);
-  //       }
-  //       try {
-  //         const accessToken = await getAccessTokenSilently({
-  //           audience: "https://group1-project3/api",
-  //           scope: "read:current_user",
-  //         });
-
-  //         await axios
-  //           .(`${BACKEND_URL}/users/${user.sub}/wishlists/`, {
-  //             headers: {
-  //               Authorization: `Bearer ${accessToken}`,
-  //             },
-  //           })
-  //           .then((res) => res.data)
-  //           .then((res) => {
-  //             setShoppingCart(res);
-  //             setCartLength(res.length);
-  //           });
-
-  //         await axios
-  //           .get(`${BACKEND_URL}/users/${user.sub}`, {
-  //             headers: {
-  //               Authorization: `Bearer ${accessToken}`,
-  //             },
-  //           })
-  //           .then((res) => res.data)
-  //           .then((res) => {
-  //             if (!res) {
-  //               try {
-  //                 axios
-  //                   .post(
-  //                     `${BACKEND_URL}/users`,
-  //                     {
-  //                       id: user.sub,
-  //                       email: user.email,
-  //                     },
-  //                     {
-  //                       headers: {
-  //                         Authorization: `Bearer ${accessToken}`,
-  //                       },
-  //                     }
-  //                   )
-  //                   .then((response) => {
-  //                     console.log(response);
-  //                     setRegistering(true);
-  //                   });
-  //               } catch (e) {
-  //                 console.log(e);
-  //               }
-  //             } else {
-  //               setUserDetails(res);
-  //               setRegistering(false);
-  //             }
-  //           });
-  //       } catch (e) {
-  //         console.log(e);
-  //       }
-  //     }
-  //   };
-  //   getShoppingCart();
-  // }, [user, isRegistering]);
-
-  // useEffect(() => {
-  //   console.log("test");
-  //   shoppingCart && setCartLength(Object.keys(shoppingCart).length);
-  // }, [shoppingCart]);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -120,26 +38,25 @@ const Header = () => {
         <Grid2 xs={0.3}></Grid2>
         <Grid2 xs={3.2}>{/* <NavBar user={user} /> */}</Grid2>
         <Grid2 xs={5} className="headerLogo" onClick={() => navigate("/")}>
-          {/* <div
-            align="middle"
-            className="headerLogo"
-            onClick={() => navigate("/")}
-          >
-            Sew Sew Tailor
-          </div> */}
+          <div align="right" className="headerLogo">
+            <HomeIcon
+              id="basic-icon"
+              style={{ marginLeft: "220px" }}
+              aria-controls={open ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              onClick={() => navigate("/")}
+            />
+          </div>
         </Grid2>
-        <Grid2 xs={1}>
-          {/* <FavoriteBorderOutlinedIcon
-          
-          /> */}
-        </Grid2>
-        <Grid2 xs={1} className="userDiv">
+        <Grid2>
           <PersonOutlineOutlinedIcon
             id="basic-icon"
+            style={{ marginLeft: "80px" }}
             aria-controls={open ? "basic-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
-            onClick={handleClick}
+            onClick={() => navigate("/UserPage")}
           />
           <Menu
             id="basic-menu"
@@ -161,26 +78,6 @@ const Header = () => {
               </MenuItem>
             )} */}
 
-            {/* {user && (
-              <MenuItem
-                onClick={() => {
-                  navigate("/sizeProfile");
-                  handleClose();
-                }}
-              >
-                Size Profile
-              </MenuItem>
-            )} */}
-            {/* {user && (
-              <MenuItem
-                onClick={() => {
-                  navigate("/OrderSummary");
-                  handleClose();
-                }}
-              >
-                Order History
-              </MenuItem>
-            )} */}
             {/* <MenuItem>{user ? <Logout /> : <Login />}</MenuItem> */}
           </Menu>
         </Grid2>

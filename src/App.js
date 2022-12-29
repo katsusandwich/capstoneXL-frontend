@@ -23,7 +23,7 @@ class App extends React.Component {
           <Route path="/" element={<Header />}>
             <Route path="" element={<Home />} />
             <Route path="Home" element={<Home />} />
-            <Route path="Login" element={<LoginPage />} />
+            <Route path="LoginPage" element={<LoginPage />} />
             <Route path="UserPage" element={<UserPage />} />
             <Route path="ListNamingPage" element={<ListNamingPage />} />
             <Route path="ListMakingPage" element={<ListMakingPage />} />

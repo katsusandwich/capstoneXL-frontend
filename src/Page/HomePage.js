@@ -17,7 +17,7 @@ const Home = () => {
           <br />
           <div className="mainPageButton" align="middle">
             <Button variant="text" onClick={() => navigate("/LoginPage")}>
-              Log in
+              Login / Sign Up
             </Button>
           </div>
         </Grid2>
