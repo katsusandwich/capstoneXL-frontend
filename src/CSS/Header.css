@@ -1,0 +1,26 @@
+.header {
+  background-color: black;
+  color: white;
+  text-align: left;
+  height: 5vh;
+  align-content: center;
+  min-width: 100vw;
+  padding: 0%;
+}
+
+.headerLogo {
+  text-align: center;
+  align-self: center;
+}
+
+.userDiv {
+  text-align: center;
+}
+
+.shoppingCartDiv {
+  text-align: right;
+}
+
+.css-jcn4dz-MuiBadge-badge {
+  top: 0px;
+}

@@ -1,17 +1,40 @@
 import React from "react";
-import logo from "./logo.png";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import logo from "./logo.png";
+import Home from "./Page/HomePage";
+import Header from "./Component/Header";
+import LoginPage from "./Page/LoginPage";
+import UserPage from "./Page/UserPage";
+import ListNamingPage from "./Page/ListNamingPage";
+import ListMakingPage from "./Page/ListMakingPage";
+import TestFormatPage from "./Page/TestFormatPage";
+import TestPage from "./Page/TestPage";
+import RightPage from "./Page/RightPage";
+import WrongPage from "./Page/WrongPage";
+import TestScorePage from "./Page/TestScorePage";
+import DummyAPICall from "./Component/DummyAPICall";
 
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-        </header>
+      <div>
+        <Routes>
+          <Route path="/" element={<Header />}>
+            <Route path="" element={<Home />} />
+            <Route path="Home" element={<Home />} />
+            <Route path="Login" element={<LoginPage />} />
+            <Route path="UserPage" element={<UserPage />} />
+            <Route path="ListNamingPage" element={<ListNamingPage />} />
+            <Route path="ListMakingPage" element={<ListMakingPage />} />
+            <Route path="TestFormatPage" element={<TestFormatPage />} />
+            <Route path="TestPage" element={<TestPage />} />
+            <Route path="RightPage" element={<RightPage />} />
+            <Route path="WrongPage" element={<WrongPage />} />
+            <Route path="TestScorePage" element={<TestScorePage />} />
+            <Route path="*" element={"Nothing here!"} />
+          </Route>
+        </Routes>
       </div>
     );
   }
