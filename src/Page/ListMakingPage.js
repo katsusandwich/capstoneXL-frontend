@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 import { Button } from "@mui/material";
 import { BACKEND_URL } from "../constants";
 
-const Home = () => {
+const ListMakingPage = () => {
   let navigate = useNavigate();
 
   //word
@@ -21,6 +21,8 @@ const Home = () => {
         setWords(res);
       });
   }, []);
+
+  console.log(words);
 
   const rows: GridRowsProp = [
     { id: 1, col1: "Hello", col2: "World" },
@@ -75,4 +77,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ListMakingPage;
