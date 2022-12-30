@@ -1,0 +1,30 @@
+.listMakingDiv {
+  background-image: url("https://images.unsplash.com/photo-1522748906645-95d8adfd52c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
+  background-repeat: repeat-y;
+  /* background-position-x: -10px; */
+  background-position-y: top;
+  background-size: 68vh;
+  height: 95vh;
+  color: white;
+  position: relative;
+  width: 100%;
+  left: 0px;
+}
+
+.listMakingHeader {
+  background-color: rgba(255, 255, 255, 0.5);
+  background-repeat: repeat-y;
+  font-size: 8vw;
+  color: black;
+  margin: 0;
+  width: 100%;
+  position: absolute;
+  top: 10%;
+  -ms-transform: translateY(-90%);
+  transform: translateY(-90%);
+}
+
+.listTable {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding-top: 70px;
+}
