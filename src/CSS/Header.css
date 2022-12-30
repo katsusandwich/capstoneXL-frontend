@@ -1,16 +1,12 @@
 .header {
   background-color: black;
   color: white;
-  text-align: left;
+  /* text-align: left; */
   height: 5vh;
   align-content: center;
+  position: top;
   min-width: 100vw;
   padding: 0%;
-}
-
-.headerLogo {
-  text-align: center;
-  align-self: center;
 }
 
 .userDiv {

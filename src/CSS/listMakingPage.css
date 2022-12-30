@@ -1,6 +1,6 @@
 .listMakingDiv {
   background-image: url("https://images.unsplash.com/photo-1522748906645-95d8adfd52c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
-  background-repeat: repeat-y;
+  /* background-repeat: repeat-y; */
   /* background-position-x: -10px; */
   background-position-y: top;
   background-size: 68vh;

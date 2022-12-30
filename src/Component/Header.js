@@ -35,30 +35,26 @@ const Header = () => {
   return (
     <div>
       <Grid2 container columnSpacing={0} rowSpacing={0} className="header">
-        <Grid2 xs={0.3}></Grid2>
-        <Grid2 xs={3.2}>{/* <NavBar user={user} /> */}</Grid2>
-        <Grid2 xs={5} className="headerLogo" onClick={() => navigate("/")}>
-          <div align="right" className="headerLogo">
-            <HomeIcon
-              id="basic-icon"
-              style={{ marginLeft: "220px" }}
-              aria-controls={open ? "basic-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-              onClick={() => navigate("/")}
-            />
-          </div>
+        <Grid2>
+          <HomeIcon
+            id="basic-icon"
+            style={{ marginLeft: "300px" }}
+            aria-controls={open ? "basic-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={() => navigate("/Home")}
+          />
         </Grid2>
         <Grid2>
           <PersonOutlineOutlinedIcon
             id="basic-icon"
-            style={{ marginLeft: "80px" }}
+            style={{ marginLeft: "20px" }}
             aria-controls={open ? "basic-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
             onClick={() => navigate("/UserPage")}
           />
-          <Menu
+          {/* <Menu
             id="basic-menu"
             anchorEl={anchorEl}
             open={open}
@@ -66,8 +62,8 @@ const Header = () => {
             MenuListProps={{
               "aria-labelledby": "basic-icon",
             }}
-          >
-            {/* {user && (
+          > */}
+          {/* {user && (
               <MenuItem
                 onClick={() => {
                   navigate("/userProfile");
@@ -78,8 +74,8 @@ const Header = () => {
               </MenuItem>
             )} */}
 
-            {/* <MenuItem>{user ? <Logout /> : <Login />}</MenuItem> */}
-          </Menu>
+          {/* <MenuItem>{user ? <Logout /> : <Login />}</MenuItem> */}
+          {/* </Menu> */}
         </Grid2>
         <Grid2 xs={0.5}></Grid2>
       </Grid2>
