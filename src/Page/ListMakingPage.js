@@ -10,7 +10,24 @@ import { BACKEND_URL } from "../constants";
 const ListMakingPage = () => {
   let navigate = useNavigate();
 
-  //word
+  //axios get wordlistnames
+  const [wordlistNames, setWordlistNames] = useState([]);
+  const [selectedWordlistName, setSelectedWordlistName] = useState(
+    wordlistNames[0]
+  );
+  useEffect(() => {
+    axios
+      .get(`${BACKEND_URL}/wordlists/333`)
+      .then((res) => res.data)
+      .then((res) => {
+        console.log(res);
+        setWordlistNames(res);
+      });
+  }, []);
+
+  console.log(wordlistNames);
+
+  //axios get words
   const [words, setWords] = useState([]);
   useEffect(() => {
     axios
@@ -26,12 +43,21 @@ const ListMakingPage = () => {
 
   const rows: GridRowsProp = [
     { id: 1, col1: "Hello", col2: "World" },
-    { id: 2, col1: "DataGridPro", col2: "is Awesome" },
+    {
+      id: 2,
+      col1: "DataGridPro",
+      col2: "is Awesome",
+    },
     { id: 3, col1: "MUI", col2: "is Amazing" },
   ];
 
   const columns: GridColDef[] = [
-    { field: "col1", headerName: "No", width: 20, flex: 1 },
+    {
+      field: "col1",
+      headerName: "No",
+      width: 20,
+      flex: 1,
+    },
     {
       field: "col2",
       headerName: "Kanji",
@@ -44,8 +70,18 @@ const ListMakingPage = () => {
       width: 20,
       flex: 1,
     },
-    { field: "col4", headerName: "Kun", width: 20, flex: 1 },
-    { field: "col5", headerName: "On", width: 20, flex: 1 },
+    {
+      field: "col4",
+      headerName: "Kun",
+      width: 20,
+      flex: 1,
+    },
+    {
+      field: "col5",
+      headerName: "On",
+      width: 20,
+      flex: 1,
+    },
     {
       field: "col6",
       headerName: "Name",
@@ -57,21 +93,44 @@ const ListMakingPage = () => {
   return (
     <div className="listMakingDiv">
       <Grid2 container columnSpacing={0} rowSpacing={0}>
-        <Grid2 xs={12}>
+        {/* <Grid2 xs={12}>
           <div className="listMakingHeader" align="middle">
             {" "}
             Modify list
           </div>
           <br />
           <br />
+        </Grid2> */}
+        <Grid2>Modify list</Grid2>
+        <Grid2>
+          <br />
+          <br /> <br />
+          <div>
+            <form>
+              Choose Wordlist
+              <select
+                value={selectedWordlistName}
+                onChange={(e) => setSelectedWordlistName(e.target.value)}
+              >
+                {wordlistNames.map((wordlistName, index) => (
+                  <option value={wordlistName} key={index}>
+                    {wordlistName.name}
+                  </option>
+                ))}
+              </select>
+            </form>
+          </div>
         </Grid2>
-        <div className="listTable">
-          <Grid2 xs={5}>
-            <div style={{ height: 500, width: 400 }}>
-              <DataGrid rows={rows} columns={columns} />
-            </div>
-          </Grid2>
-        </div>
+        <Grid2 xs={5}>
+          <br /> <br />
+          <div className="listTable">
+            <Grid2 xs={5}>
+              <div style={{ height: 500, width: 400 }}>
+                <DataGrid rows={rows} columns={columns} />
+              </div>
+            </Grid2>
+          </div>
+        </Grid2>
       </Grid2>
     </div>
   );
