@@ -14,7 +14,7 @@ const ListMakingPage = () => {
   const [words, setWords] = useState([]);
   useEffect(() => {
     axios
-      .get(`${BACKEND_URL}/words`)
+      .get(`${BACKEND_URL}/words/1`)
       .then((res) => res.data)
       .then((res) => {
         console.log(res);
