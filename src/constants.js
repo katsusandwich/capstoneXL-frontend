@@ -1,1 +1,1 @@
-export const BACKEND_URL = process.env.NODE_ENV;
+export const BACKEND_URL = "http://localhost:8181";
