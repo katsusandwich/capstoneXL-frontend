@@ -27,6 +27,10 @@ const ListMakingPage = () => {
 
   console.log(wordlistNames);
 
+  const submitWordListName = () => {
+    console.log(selectedWordlistName);
+  };
+
   //axios get words
   const [words, setWords] = useState([]);
   useEffect(() => {
@@ -93,21 +97,21 @@ const ListMakingPage = () => {
   return (
     <div className="listMakingDiv">
       <Grid2 container columnSpacing={0} rowSpacing={0}>
-        {/* <Grid2 xs={12}>
+        <Grid2 xs={12}>
           <div className="listMakingHeader" align="middle">
             {" "}
-            Modify list
+            Modify Wordlist
           </div>
           <br />
           <br />
-        </Grid2> */}
-        <Grid2>Modify list</Grid2>
+        </Grid2>
         <Grid2>
           <br />
           <br /> <br />
           <div>
             <form>
-              Choose Wordlist
+              <br /> <br />
+              Select Wordlist
               <select
                 value={selectedWordlistName}
                 onChange={(e) => setSelectedWordlistName(e.target.value)}
@@ -115,20 +119,32 @@ const ListMakingPage = () => {
                 {wordlistNames.map((wordlistName, index) => (
                   <option value={wordlistName} key={index}>
                     {wordlistName.name}
+                    {console.log(selectedWordlistName)}
                   </option>
                 ))}
               </select>
+              <button
+                type="button"
+                onClick={submitWordListName}
+                className="listMakingButton"
+              >
+                Choose Wordlist
+              </button>
             </form>
           </div>
         </Grid2>
         <Grid2 xs={5}>
-          <br /> <br />
-          <div className="listTable">
-            <Grid2 xs={5}>
-              <div style={{ height: 500, width: 400 }}>
-                <DataGrid rows={rows} columns={columns} />
+          <div>
+            <div>
+              <br /> <br />
+              <div className="listTable" align="centre">
+                <Grid2 xs={5}>
+                  <div style={{ height: 500, width: 400 }}>
+                    <DataGrid rows={rows} columns={columns} />
+                  </div>
+                </Grid2>
               </div>
-            </Grid2>
+            </div>
           </div>
         </Grid2>
       </Grid2>
