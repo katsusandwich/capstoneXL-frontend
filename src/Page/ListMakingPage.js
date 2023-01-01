@@ -24,14 +24,12 @@ const ListMakingPage = () => {
       });
   }, []);
 
-  const [selectedWordlistName, setSelectedWordlistName] = useState({
-    selectedWordlistName: "",
-  });
+  const [selectedWordlistName, setSelectedWordlistName] = useState();
 
   //the dropdown selection should trigger setSelectedWordlistName
   //handle Submit - this should be triggered by the button and set the wordlistname to where it needs to be
   const submitWordListName = () => {
-    console.log(selectedWordlistName);
+    console.log(`selectedWordlistName is ${selectedWordlistName}`);
   };
 
   //axios get words
@@ -117,9 +115,10 @@ const ListMakingPage = () => {
               Select Wordlist
               <select
                 value={selectedWordlistName}
-                onClick={(e) => {
+                onChange={(e) => {
+                  console.log(`e.target.value is ${e.target.value}`);
                   setSelectedWordlistName(e.target.value);
-                  console.log(selectedWordlistName); // this prints empty because of setState again. you can't immediately check. if u want to check, use a useEffect
+                  // console.log(selectedWordlistName); // this prints empty because of setState again. you can't immediately check. if u want to check, use a useEffect
                 }}
               >
                 {wordlistNames.map((wordlistName, index) => (
