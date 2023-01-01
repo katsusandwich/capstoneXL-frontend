@@ -12,7 +12,7 @@ const ListMakingPage = () => {
 
   //axios get wordlistnames
   const [wordlistNames, setWordlistNames] = useState([]);
-  const [selectedWordlistName, setSelectedWordlistName] = useState([]);
+
   useEffect(() => {
     axios
       .get(`${BACKEND_URL}/wordlists/333`)
@@ -20,8 +20,11 @@ const ListMakingPage = () => {
       .then((res) => {
         console.log(res);
         setWordlistNames(res);
+        console.log(wordlistNames);
       });
   }, []);
+
+  const [selectedWordlistName, setSelectedWordlistName] = useState([]);
 
   console.log(selectedWordlistName);
 
