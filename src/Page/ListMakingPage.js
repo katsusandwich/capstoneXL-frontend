@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-// import { DataGrid } from "@mui/x-data-grid";
 import { Table } from "@mantine/core";
 import "../CSS/listMakingPage.css";
 import { useNavigate } from "react-router";
@@ -53,54 +52,16 @@ const ListMakingPage = () => {
   //     });
   // }, []);
 
-  const rows: GridRowsProp = [
-    { id: 1, col1: "Hello", col2: "World" },
-    {
-      id: 2,
-      col1: "DataGridPro",
-      col2: "is Awesome",
-    },
-    { id: 3, col1: "MUI", col2: "is Amazing" },
-  ];
-
-  const columns: GridColDef[] = [
-    {
-      field: "col1",
-      headerName: "No",
-      width: 20,
-      flex: 1,
-    },
-    {
-      field: "col2",
-      headerName: "Kanji",
-      width: 20,
-      flex: 1,
-    },
-    {
-      field: "col3",
-      headerName: "Means",
-      width: 20,
-      flex: 1,
-    },
-    {
-      field: "col4",
-      headerName: "Kun",
-      width: 20,
-      flex: 1,
-    },
-    {
-      field: "col5",
-      headerName: "On",
-      width: 20,
-      flex: 1,
-    },
-    {
-      field: "col6",
-      headerName: "Name",
-      width: 20,
-      flex: 1,
-    },
-  ];
+  //code for table rows
+  const rows = words.map((word) => (
+    <tr key={word.id}>
+      <td>{word.kanji}</td>
+      <td>{word.meanings}</td>
+      <td>{word.kunReadings}</td>
+      <td>{word.onReadings}</td>
+      <td>{word.nameReadings}</td>
+    </tr>
+  ));
 
   return (
     <div className="listMakingDiv">
@@ -145,17 +106,21 @@ const ListMakingPage = () => {
           </div>
         </Grid2>
         <Grid2 xs={5}>
-          <div>
-            <div>
-              <br /> <br />
-              <div className="listTable" align="centre">
-                <Grid2 xs={5}>
-                  {/* <div style={{ height: 500, width: 400 }}>
-                    <DataGrid rows={rows} columns={columns} />
-                  </div> */}
-                </Grid2>
-              </div>
-            </div>
+          <div className="listTable" align="centre">
+            <Grid2 xs={3}>
+              <Table>
+                <thead>
+                  <tr>
+                    <th>Kanji</th>
+                    <th>Meanings</th>
+                    <th>Kun Readings</th>
+                    <th>On Readings</th>
+                    <th>Name Readings</th>
+                  </tr>
+                </thead>
+                <tbody>{rows}</tbody>
+              </Table>
+            </Grid2>
           </div>
         </Grid2>
       </Grid2>
