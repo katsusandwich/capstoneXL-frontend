@@ -24,12 +24,12 @@ const ListMakingPage = () => {
       });
   }, []);
 
-  const [selectedWordlistName, setSelectedWordlistName] = useState();
+  const [selectedWordlistId, setSelectedWordlistId] = useState();
 
-  //the dropdown selection should trigger setSelectedWordlistName
+  //the dropdown selection should trigger setSelectedWordlistId
   //handle Submit - this should be triggered by the button and set the wordlistname to where it needs to be
-  const submitWordListName = () => {
-    console.log(`selectedWordlistName is ${selectedWordlistName}`);
+  const submitWordListId = () => {
+    console.log(`selectedWordlistId is ${selectedWordlistId}`);
   };
 
   //axios get words
@@ -114,22 +114,22 @@ const ListMakingPage = () => {
               <br /> <br />
               Select Wordlist
               <select
-                value={selectedWordlistName}
+                value={selectedWordlistId}
                 onChange={(e) => {
                   console.log(`e.target.value is ${e.target.value}`);
-                  setSelectedWordlistName(e.target.value);
-                  // console.log(selectedWordlistName); // this prints empty because of setState again. you can't immediately check. if u want to check, use a useEffect
+                  setSelectedWordlistId(e.target.value);
+                  // console.log(selectedWordlistId); // this prints empty because of setState again. you can't immediately check. if u want to check, use a useEffect
                 }}
               >
                 {wordlistNames.map((wordlistName, index) => (
-                  <option value={wordlistName.name} key={index}>
+                  <option value={wordlistName.id} key={index}>
                     {wordlistName.name}
                   </option>
                 ))}
               </select>
               <button
                 type="button"
-                onClick={submitWordListName}
+                onClick={submitWordListId}
                 className="listMakingButton"
               >
                 Choose Wordlist
