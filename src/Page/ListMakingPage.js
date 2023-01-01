@@ -20,16 +20,18 @@ const ListMakingPage = () => {
       .then((res) => {
         console.log(res);
         setWordlistNames(res);
-        console.log(wordlistNames);
+        // console.log(wordlistNames); //why is this an empty array? is it because it's asynchronous?
       });
   }, []);
 
-  const [selectedWordlistName, setSelectedWordlistName] = useState([]);
+  const [selectedWordlistName, setSelectedWordlistName] = useState({
+    selectedWordlistName: "",
+  });
 
-  console.log(selectedWordlistName);
-
+  //the dropdown selection should trigger setSelectedWordlistName
+  //handle Submit - this should be triggered by the button and set the wordlistname to where it needs to be
   const submitWordListName = () => {
-    console.log(JSON.stringify(selectedWordlistName));
+    console.log(selectedWordlistName.selectedWordlistName.name);
   };
 
   //axios get words
@@ -115,7 +117,12 @@ const ListMakingPage = () => {
               Select Wordlist
               <select
                 value={selectedWordlistName}
-                onChange={(e) => setSelectedWordlistName(e.target.value)}
+                onClick={
+                  (e) => console.log(JSON.stringify(e.target.value))
+                  // setSelectedWordlistName({
+                  //   selectedWordlistName: e.target.value,
+                  // })
+                }
               >
                 {wordlistNames.map((wordlistName, index) => (
                   <option value={wordlistName} key={index}>
