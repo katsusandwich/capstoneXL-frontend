@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import { DataGrid } from "@mui/x-data-grid";
+// import { DataGrid } from "@mui/x-data-grid";
+import { Table } from "@mantine/core";
 import "../CSS/listMakingPage.css";
 import { useNavigate } from "react-router";
 import { Button } from "@mui/material";
@@ -143,9 +144,9 @@ const ListMakingPage = () => {
               <br /> <br />
               <div className="listTable" align="centre">
                 <Grid2 xs={5}>
-                  <div style={{ height: 500, width: 400 }}>
+                  {/* <div style={{ height: 500, width: 400 }}>
                     <DataGrid rows={rows} columns={columns} />
-                  </div>
+                  </div> */}
                 </Grid2>
               </div>
             </div>
