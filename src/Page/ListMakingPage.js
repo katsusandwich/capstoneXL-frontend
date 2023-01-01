@@ -25,27 +25,33 @@ const ListMakingPage = () => {
       });
   }, []);
 
+  // handle wordlist selection by user
   const [selectedWordlistId, setSelectedWordlistId] = useState();
 
-  //the dropdown selection should trigger setSelectedWordlistId
-  //handle Submit - this should be triggered by the button and set the wordlistname to where it needs to be
+  //axios get words from wordlist selected by User
+  const [words, setWords] = useState([]);
   const submitWordListId = () => {
     console.log(`selectedWordlistId is ${selectedWordlistId}`);
-  };
-
-  //axios get words
-  const [words, setWords] = useState([]);
-  useEffect(() => {
     axios
-      .get(`${BACKEND_URL}/words/1`)
+      .get(`${BACKEND_URL}/words/${selectedWordlistId}`)
       .then((res) => res.data)
       .then((res) => {
         console.log(res);
         setWords(res);
       });
-  }, []);
+  };
+  console.log(`Words are ${JSON.stringify(words)}`);
 
-  console.log(words);
+  //no longer need getting of words to be a useeffect
+  // useEffect(() => {
+  //   axios
+  //     .get(`${BACKEND_URL}/words/1`)
+  //     .then((res) => res.data)
+  //     .then((res) => {
+  //       console.log(res);
+  //       setWords(res);
+  //     });
+  // }, []);
 
   const rows: GridRowsProp = [
     { id: 1, col1: "Hello", col2: "World" },
