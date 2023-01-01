@@ -20,7 +20,7 @@ const ListMakingPage = () => {
       .then((res) => {
         console.log(res);
         setWordlistNames(res);
-        // console.log(wordlistNames); //why is this an empty array? is it because it's asynchronous?
+        // console.log(wordlistNames); //why is this an empty array? is it because it's asynchronous? (A: yes - setting is)
       });
   }, []);
 
