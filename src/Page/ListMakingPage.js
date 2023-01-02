@@ -144,12 +144,6 @@ const ListMakingPage = () => {
               (onReading, index) => `${index + 1}.${onReading}\n`
             )
           : "NA"}
-        {/* {word?.onReadings &&
-          word.onReadings.map((onReading, index) =>
-            onReading === null || onReading === ""
-              ? "NA"
-              : `${index + 1}.${onReading}\n`
-          )} */}
       </td>
       <td>
         {word.nameReadings
@@ -229,7 +223,11 @@ const ListMakingPage = () => {
             <>
               <Modal
                 opened={opened}
-                onClose={() => setOpened(false)}
+                onClose={() => {
+                  setOpened(false);
+                  submitWordListId();
+                  setWordEntered("");
+                }}
                 title="Do you want to add this word?"
               >
                 {JSON.stringify(wordToBeAdded)}
