@@ -6,6 +6,7 @@ import "../CSS/listMakingPage.css";
 import { useNavigate } from "react-router";
 // import { Button } from "@mui/material";
 import { BACKEND_URL } from "../constants";
+import { SignalCellularNullSharp } from "@mui/icons-material";
 
 const ListMakingPage = () => {
   let navigate = useNavigate();
@@ -20,6 +21,7 @@ const ListMakingPage = () => {
       .then((res) => {
         console.log(res);
         setWordlistNames(res);
+        setSelectedWordlistId(res[0].id);
         // console.log(wordlistNames); //why is this an empty array? is it because it's asynchronous? (A: yes - setting is)
       });
   }, []);
@@ -125,26 +127,36 @@ const ListMakingPage = () => {
     <tr key={word.id}>
       <td>{word.kanji}</td>
       <td>
-        {word.meanings.map((meaning, index) =>
-          meaning === "" ? "NA" : `${index + 1}.${meaning}\n`
-        )}
+        {word.meanings
+          ? word.meanings.map((meaning, index) => `${index + 1}.${meaning}\n`)
+          : "NA"}
       </td>
       <td>
-        {word.kunReadings.map((kunReading, index) =>
-          kunReading === "" ? "NA" : `${index + 1}.${kunReading}\n`
-        )}
+        {word.kunReadings
+          ? word.kunReadings.map(
+              (kunReading, index) => `${index + 1}.${kunReading}\n`
+            )
+          : "NA"}
       </td>
       <td className="column">
-        {word.onReadings.map((onReading, index) =>
-          onReading === "" ? "NA" : `${index + 1}.${onReading}\n`
-        )}
+        {word.onReadings
+          ? word.onReadings.map(
+              (onReading, index) => `${index + 1}.${onReading}\n`
+            )
+          : "NA"}
+        {/* {word?.onReadings &&
+          word.onReadings.map((onReading, index) =>
+            onReading === null || onReading === ""
+              ? "NA"
+              : `${index + 1}.${onReading}\n`
+          )} */}
       </td>
       <td>
-        {word.nameReadings.map((nameReading, index) =>
-          nameReading === ""
-            ? "NA"
-            : `${index + 1}.${JSON.stringify(nameReading)}\n`
-        )}
+        {word.nameReadings
+          ? word.nameReadings.map(
+              (nameReading, index) => `${index + 1}.${nameReading}\n`
+            )
+          : "NA"}
       </td>
     </tr>
   ));
