@@ -11,9 +11,8 @@ import { SignalCellularNullSharp } from "@mui/icons-material";
 const ListMakingPage = () => {
   let navigate = useNavigate();
 
-  //axios get wordlistnames
+  //get wordlistnames to display in dropdown box
   const [wordlistNames, setWordlistNames] = useState([]);
-
   useEffect(() => {
     axios
       .get(`${BACKEND_URL}/wordlists/333`)
@@ -111,7 +110,7 @@ const ListMakingPage = () => {
       <th>Kanji</th>
       <th>Meanings</th>
       <th>Kun Readings</th>
-      <th className="column">On Readings</th>
+      <th>On Readings</th>
       <th>Name Readings</th>
     </tr>
   );
@@ -132,7 +131,7 @@ const ListMakingPage = () => {
             )
           : "NA"}
       </td>
-      <td className="column">
+      <td>
         {word.onReadings
           ? word.onReadings.map(
               (onReading, index) => `${index + 1}.${onReading}\n`
