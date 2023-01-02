@@ -34,6 +34,10 @@
   padding: "16px";
 }
 
+.column {
+  width: 5px;
+}
+
 .listMakingButton {
   font-size: 3vw;
 }

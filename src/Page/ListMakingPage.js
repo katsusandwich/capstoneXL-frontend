@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import { Table } from "@mantine/core";
+import { Title, Table, Paper } from "@mantine/core";
 import "../CSS/listMakingPage.css";
 import { useNavigate } from "react-router";
 import { Button } from "@mui/material";
@@ -35,22 +35,77 @@ const ListMakingPage = () => {
       .get(`${BACKEND_URL}/words/${selectedWordlistId}`)
       .then((res) => res.data)
       .then((res) => {
-        console.log(res);
+        console.log(`This is res of submitWordListId ${res}`);
         setWords(res);
       });
   };
   console.log(`Words are ${JSON.stringify(words)}`);
 
-  //no longer need getting of words to be a useeffect
-  // useEffect(() => {
-  //   axios
-  //     .get(`${BACKEND_URL}/words/1`)
-  //     .then((res) => res.data)
-  //     .then((res) => {
-  //       console.log(res);
-  //       setWords(res);
-  //     });
-  // }, []);
+  //useState for word to be entered
+  // const [wordEntered, setWordEntered] = useState("");
+
+  //useState for word to be added which is an empty set of objects
+  const [wordToBeAdded, setWordToBeAdded] = useState({
+    kanji: "",
+    meanings: [],
+    kunReadings: [],
+    onReadings: [],
+    nameReadings: [],
+  });
+
+  //axios get the word from the kanji api via the blank
+  const handleGetKanji = (event) => {
+    event.preventDefault();
+    axios
+      .get(`https://kanjiapi.dev/v1/kanji/${wordToBeAdded}`)
+      .then((res) => res.data)
+      .then((res) => {
+        console.log(`This is res of handleGetKanji ${JSON.stringify(res)}`);
+        setWordToBeAdded(res);
+      });
+  };
+
+  //handleAddWord will contain axios post for add word
+  const handleAddWord = async () => {
+    try {
+      // const getAccessToken = await getAccessTokenSilently();
+      await axios({
+        method: "post",
+        url: `${BACKEND_URL}/words`,
+        // headers: {
+        //   Authorization: `Bearer ${getAccessToken}`,
+        // },
+        data: {
+          wordlistId: selectedWordlistId,
+          // userId: user.sub,
+          userId: 333,
+          kanji: wordToBeAdded.kanji,
+          meanings: wordToBeAdded.meanings,
+          kunReadings: wordToBeAdded.kun_readings,
+          onReadings: wordToBeAdded.on_readings,
+          nameReadings: wordToBeAdded.name_readings,
+          needsRevision: false,
+        },
+      });
+      //if successful, action here
+      alert("Successfully added word!");
+    } catch (error) {
+      //if fail, will go to here
+      alert("Please fill in a kanji.");
+    }
+  };
+
+  //VISUALS
+  //code for table columns
+  const columns = (
+    <tr>
+      <th>Kanji</th>
+      <th>Meanings</th>
+      <th>Kun Readings</th>
+      <th className="column">On Readings</th>
+      <th>Name Readings</th>
+    </tr>
+  );
 
   //code for table rows
   const rows = words.map((word) => (
@@ -66,7 +121,7 @@ const ListMakingPage = () => {
           kunReading === "" ? "NA" : `${index + 1}.${kunReading}\n`
         )}
       </td>
-      <td>
+      <td className="column">
         {word.onReadings.map((onReading, index) =>
           onReading === "" ? "NA" : `${index + 1}.${onReading}\n`
         )}
@@ -121,19 +176,26 @@ const ListMakingPage = () => {
             </form>
           </div>
         </Grid2>
+        <Grid2>
+          <div>
+            <form onSubmit={handleGetKanji}>
+              <input
+                type="text"
+                value={wordToBeAdded}
+                onChange={(e) => {
+                  console.log(`formbox is ${e.target.value}`);
+                  setWordToBeAdded(e.target.value);
+                }}
+              />
+              <input type="submit" value="Submit" />
+            </form>
+          </div>
+        </Grid2>
         <Grid2 xs={5}>
           <div className="listTable" align="centre">
             <Grid2 xs={5}>
               <Table striped withBorder>
-                <thead>
-                  <tr>
-                    <th>Kanji</th>
-                    <th>Meanings</th>
-                    <th>Kun Readings</th>
-                    <th>On Readings</th>
-                    <th>Name Readings</th>
-                  </tr>
-                </thead>
+                <thead>{columns}</thead>
                 <tbody>{rows}</tbody>
               </Table>
             </Grid2>
