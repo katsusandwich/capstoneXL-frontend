@@ -26,9 +26,12 @@
 
 .listTable {
   background-color: rgba(255, 255, 255, 0.5);
-  padding-top: 70px;
-  position: absolute;
+  /* position: absolute; */
   align-content: center;
+  table-layout: "fixed";
+  width: "100px";
+  max-width: "100%";
+  padding: "16px";
 }
 
 .listMakingButton {
