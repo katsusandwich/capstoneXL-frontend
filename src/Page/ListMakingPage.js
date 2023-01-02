@@ -41,8 +41,8 @@ const ListMakingPage = () => {
   };
   console.log(`Words are ${JSON.stringify(words)}`);
 
-  //useState for word to be entered
-  // const [wordEntered, setWordEntered] = useState("");
+  //  useState for word to be entered
+  const [wordEntered, setWordEntered] = useState("");
 
   //useState for word to be added which is an empty set of objects
   const [wordToBeAdded, setWordToBeAdded] = useState({
@@ -57,11 +57,12 @@ const ListMakingPage = () => {
   const handleGetKanji = (event) => {
     event.preventDefault();
     axios
-      .get(`https://kanjiapi.dev/v1/kanji/${wordToBeAdded}`)
+      .get(`https://kanjiapi.dev/v1/kanji/${wordEntered}`)
       .then((res) => res.data)
       .then((res) => {
         console.log(`This is res of handleGetKanji ${JSON.stringify(res)}`);
         setWordToBeAdded(res);
+        // console.log(`wordToBeAdded is ${JSON.stringify(wordToBeAdded)}`);　this is blank because asynchronous
       });
   };
 
@@ -176,22 +177,20 @@ const ListMakingPage = () => {
             </form>
           </div>
         </Grid2>
-        <Grid2>
+        <Grid2 xs={5}>
           <div>
             <form onSubmit={handleGetKanji}>
               <input
                 type="text"
-                value={wordToBeAdded}
+                value={wordEntered}
                 onChange={(e) => {
                   console.log(`formbox is ${e.target.value}`);
-                  setWordToBeAdded(e.target.value);
+                  setWordEntered(e.target.value);
                 }}
               />
-              <input type="submit" value="Submit" />
+              <input type="submit" value="Add word" />
             </form>
           </div>
-        </Grid2>
-        <Grid2 xs={5}>
           <div className="listTable" align="centre">
             <Grid2 xs={5}>
               <Table striped withBorder>
