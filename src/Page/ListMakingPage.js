@@ -123,8 +123,8 @@ const ListMakingPage = () => {
         </Grid2>
         <Grid2 xs={5}>
           <div className="listTable" align="centre">
-            <Grid2 xs={3}>
-              <Table striped withBorder horizontalSpacing="sm">
+            <Grid2 xs={5}>
+              <Table striped withBorder>
                 <thead>
                   <tr>
                     <th>Kanji</th>
