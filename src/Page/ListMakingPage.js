@@ -62,6 +62,20 @@ const ListMakingPage = () => {
       .then((res) => {
         console.log(`This is res of handleGetKanji ${JSON.stringify(res)}`);
         setWordToBeAdded(res);
+        alert(
+          `Do you want to add this word? ${JSON.stringify(res)}${(
+            <div>
+              <button
+                type="button"
+                onClick={handleAddWord}
+                className="listMakingButton"
+              >
+                Ok, add word
+              </button>
+            </div>
+          )}`
+        );
+
         // console.log(`wordToBeAdded is ${JSON.stringify(wordToBeAdded)}`);　this is blank because asynchronous
       });
   };
