@@ -86,14 +86,16 @@ const ListMakingPage = () => {
           kanji: wordToBeAdded.kanji,
           meanings: wordToBeAdded.meanings,
           kunReadings:
-            wordToBeAdded.kun_readings === null
-              ? []
+            wordToBeAdded.kun_readings === "[]"
+              ? JSON.stringify(wordToBeAdded.kun_readings)
               : wordToBeAdded.kun_readings,
           onReadings:
-            wordToBeAdded.on_readings === null ? [] : wordToBeAdded.on_readings,
+            wordToBeAdded.on_readings === "[]"
+              ? JSON.stringify(wordToBeAdded.on_readings)
+              : wordToBeAdded.on_readings,
           nameReadings:
-            wordToBeAdded.name_readings === null
-              ? []
+            wordToBeAdded.name_readings === "[]"
+              ? JSON.stringify(wordToBeAdded.name_readings)
               : wordToBeAdded.name_readings,
           needsRevision: false,
         },
@@ -139,7 +141,9 @@ const ListMakingPage = () => {
       </td>
       <td>
         {word.nameReadings.map((nameReading, index) =>
-          nameReading === "" ? "NA" : `${index + 1}.${nameReading}\n`
+          nameReading === ""
+            ? "NA"
+            : `${index + 1}.${JSON.stringify(nameReading)}\n`
         )}
       </td>
     </tr>
