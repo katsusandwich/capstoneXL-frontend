@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import { Title, Table, Paper } from "@mantine/core";
+import { Table, Modal, Button, Group } from "@mantine/core";
 import "../CSS/listMakingPage.css";
 import { useNavigate } from "react-router";
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
 import { BACKEND_URL } from "../constants";
 
 const ListMakingPage = () => {
@@ -53,6 +53,9 @@ const ListMakingPage = () => {
     nameReadings: [],
   });
 
+  //alert box
+  const [opened, setOpened] = useState(false);
+
   //axios get the word from the kanji api via the blank
   const handleGetKanji = (event) => {
     event.preventDefault();
@@ -62,20 +65,6 @@ const ListMakingPage = () => {
       .then((res) => {
         console.log(`This is res of handleGetKanji ${JSON.stringify(res)}`);
         setWordToBeAdded(res);
-        alert(
-          `Do you want to add this word? ${JSON.stringify(res)}${(
-            <div>
-              <button
-                type="button"
-                onClick={handleAddWord}
-                className="listMakingButton"
-              >
-                Ok, add word
-              </button>
-            </div>
-          )}`
-        );
-
         // console.log(`wordToBeAdded is ${JSON.stringify(wordToBeAdded)}`);　this is blank because asynchronous
       });
   };
@@ -96,9 +85,16 @@ const ListMakingPage = () => {
           userId: 333,
           kanji: wordToBeAdded.kanji,
           meanings: wordToBeAdded.meanings,
-          kunReadings: wordToBeAdded.kun_readings,
-          onReadings: wordToBeAdded.on_readings,
-          nameReadings: wordToBeAdded.name_readings,
+          kunReadings:
+            wordToBeAdded.kun_readings === null
+              ? []
+              : wordToBeAdded.kun_readings,
+          onReadings:
+            wordToBeAdded.on_readings === null ? [] : wordToBeAdded.on_readings,
+          nameReadings:
+            wordToBeAdded.name_readings === null
+              ? []
+              : wordToBeAdded.name_readings,
           needsRevision: false,
         },
       });
@@ -193,7 +189,7 @@ const ListMakingPage = () => {
         </Grid2>
         <Grid2 xs={5}>
           <div>
-            <form onSubmit={handleGetKanji}>
+            <form>
               <input
                 type="text"
                 value={wordEntered}
@@ -202,8 +198,36 @@ const ListMakingPage = () => {
                   setWordEntered(e.target.value);
                 }}
               />
-              <input type="submit" value="Add word" />
+              <button
+                type="button"
+                onClick={(event) => {
+                  setOpened(true);
+                  handleGetKanji(event);
+                }}
+                className="listMakingButton"
+                value="Add word"
+              >
+                Add word
+              </button>
             </form>
+            <>
+              <Modal
+                opened={opened}
+                onClose={() => setOpened(false)}
+                title="Do you want to add this word?"
+              >
+                {JSON.stringify(wordToBeAdded)}
+                <div>
+                  <button
+                    type="button"
+                    onClick={handleAddWord}
+                    className="listMakingButton"
+                  >
+                    Ok, add word
+                  </button>
+                </div>
+              </Modal>
+            </>
           </div>
           <div className="listTable" align="centre">
             <Grid2 xs={5}>
