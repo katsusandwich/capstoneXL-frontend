@@ -70,8 +70,8 @@ const ListMakingPage = () => {
         )}
       </td>
       <td>
-        {word.nameReadings.map(
-          (nameReading, index) => `${index + 1}.${nameReading}\n`
+        {word.nameReadings.map((nameReading, index) =>
+          nameReading === "" ? "NA" : `${index + 1}.${nameReading}\n`
         )}
       </td>
     </tr>
