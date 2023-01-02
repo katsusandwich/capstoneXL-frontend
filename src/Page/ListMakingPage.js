@@ -56,10 +56,10 @@ const ListMakingPage = () => {
   const rows = words.map((word) => (
     <tr key={word.id}>
       <td>{word.kanji}</td>
-      <td>{word.meanings}</td>
-      <td>{word.kunReadings}</td>
-      <td>{word.onReadings}</td>
-      <td>{word.nameReadings}</td>
+      <td>{word.meanings.map((meaning) => `${meaning}\n`)}</td>
+      <td>{word.kunReadings.map((kunReading) => `${kunReading}\n`)}</td>
+      <td>{word.onReadings.map((onReading) => `${onReading}\n`)}</td>
+      <td>{word.nameReadings.map((nameReading) => `${nameReading}\n`)}</td>
     </tr>
   ));
 
