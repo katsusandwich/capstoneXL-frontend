@@ -57,16 +57,18 @@ const ListMakingPage = () => {
     <tr key={word.id}>
       <td>{word.kanji}</td>
       <td>
-        {word.meanings.map((meaning, index) => `${index + 1}.${meaning}\n`)}
-      </td>
-      <td>
-        {word.kunReadings.map(
-          (kunReading, index) => `${index + 1}.${kunReading}\n`
+        {word.meanings.map((meaning, index) =>
+          meaning === "" ? "NA" : `${index + 1}.${meaning}\n`
         )}
       </td>
       <td>
-        {word.onReadings.map(
-          (onReading, index) => `${index + 1}.${onReading}\n`
+        {word.kunReadings.map((kunReading, index) =>
+          kunReading === "" ? "NA" : `${index + 1}.${kunReading}\n`
+        )}
+      </td>
+      <td>
+        {word.onReadings.map((onReading, index) =>
+          onReading === "" ? "NA" : `${index + 1}.${onReading}\n`
         )}
       </td>
       <td>
