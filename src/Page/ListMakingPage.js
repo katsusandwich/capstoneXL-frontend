@@ -87,23 +87,17 @@ const ListMakingPage = () => {
           userId: 333,
           kanji: wordToBeAdded.kanji,
           meanings: wordToBeAdded.meanings,
-          kunReadings:
-            wordToBeAdded.kun_readings === "[]"
-              ? JSON.stringify(wordToBeAdded.kun_readings)
-              : wordToBeAdded.kun_readings,
-          onReadings:
-            wordToBeAdded.on_readings === "[]"
-              ? JSON.stringify(wordToBeAdded.on_readings)
-              : wordToBeAdded.on_readings,
-          nameReadings:
-            wordToBeAdded.name_readings === "[]"
-              ? JSON.stringify(wordToBeAdded.name_readings)
-              : wordToBeAdded.name_readings,
+          kunReadings: wordToBeAdded.kun_readings,
+          onReadings: wordToBeAdded.on_readings,
+          nameReadings: wordToBeAdded.name_readings,
           needsRevision: false,
         },
       });
       //if successful, action here
-      alert("Successfully added word!");
+      alert(`Successfully added ${wordEntered}!`);
+      setOpened(false);
+      setWordEntered("");
+      submitWordListId();
     } catch (error) {
       //if fail, will go to here
       alert("Please fill in a kanji.");
@@ -239,6 +233,19 @@ const ListMakingPage = () => {
                   >
                     Ok, add word
                   </button>
+                  <div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setOpened(false);
+                        submitWordListId();
+                        setWordEntered("");
+                      }}
+                      className="listMakingButton"
+                    >
+                      No, cancel
+                    </button>
+                  </div>
                 </div>
               </Modal>
             </>
