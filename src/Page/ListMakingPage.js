@@ -235,28 +235,34 @@ const ListMakingPage = () => {
         }}
         title="Do you want to add this word?"
       >
-        {JSON.stringify(wordToBeAdded)}
-        <button
-          type="button"
-          onClick={handleAddWord}
-          className="listMakingButton"
-        >
-          Ok, add word
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            setOpened(false);
-            submitWordListId();
-            setWordEntered("");
-          }}
-          className="listMakingButton"
-        >
-          No, cancel
-        </button>
+        <Container>{JSON.stringify(wordToBeAdded)}</Container>
+        <div>
+          <button
+            type="button"
+            onClick={handleAddWord}
+            className="listMakingButton"
+          >
+            Ok, add word
+          </button>
+        </div>
+        <div>
+          <button
+            type="button"
+            onClick={() => {
+              setOpened(false);
+              submitWordListId();
+              setWordEntered("");
+            }}
+            className="listMakingButton"
+          >
+            No, cancel
+          </button>
+        </div>
       </Modal>
       <Container>
-        <Button>Test yourself on Wordlist: {selectedWordlistName}</Button>
+        <Button onClick={() => navigate("/TestPage")}>
+          Test yourself on Wordlist: {selectedWordlistName}
+        </Button>
       </Container>
       <Container fluid>
         <Table striped withBorder className="listTable">
