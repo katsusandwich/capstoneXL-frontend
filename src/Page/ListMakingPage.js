@@ -5,6 +5,7 @@ import { Button, Container, Table, Modal, Stack } from "@mantine/core";
 import "../CSS/listMakingPage.css";
 import { useNavigate } from "react-router";
 import { BACKEND_URL } from "../constants";
+import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdContext";
 
 const ListMakingPage = () => {
   let navigate = useNavigate();
@@ -13,7 +14,10 @@ const ListMakingPage = () => {
   const userId = "333";
 
   // handle wordlist selection by user
-  const [selectedWordlistId, setSelectedWordlistId] = useState();
+  const [
+    selectedWordlistId,
+    setSelectedWordlistId,
+  ] = useSelectedWordlistIdContext();
 
   //get wordlists info for names to display in dropdown box
   const [wordlists, setWordlists] = useState([]);

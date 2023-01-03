@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+import { SelectedWordlistIdContextProvider } from "./Context/SelectedWordlistIdContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,7 +16,9 @@ root.render(
   //   scope="read:current_user update:current_user_metadata"
   // >
   <BrowserRouter>
-    <App />
+    <SelectedWordlistIdContextProvider>
+      <App />
+    </SelectedWordlistIdContextProvider>
   </BrowserRouter>
   // </Auth0Provider>
 );
