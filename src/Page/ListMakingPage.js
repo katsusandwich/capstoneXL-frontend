@@ -176,7 +176,7 @@ const ListMakingPage = () => {
       className="listMakingDiv"
     >
       <Container className="listMakingHeader" fluid>
-        Modify Wordlist
+        Modify Wordlist: {selectedWordlistName}
       </Container>
       <Container fluid>
         <form>
