@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import { AspectRatio, Container, Table, Modal, Stack } from "@mantine/core";
+import { Button, Container, Table, Modal, Stack } from "@mantine/core";
 import "../CSS/listMakingPage.css";
 import { useNavigate } from "react-router";
 import { BACKEND_URL } from "../constants";
@@ -9,22 +9,29 @@ import { BACKEND_URL } from "../constants";
 const ListMakingPage = () => {
   let navigate = useNavigate();
 
-  //get wordlistnames to display in dropdown box
-  const [wordlistNames, setWordlistNames] = useState([]);
-  useEffect(() => {
-    axios
-      .get(`${BACKEND_URL}/wordlists/333`)
-      .then((res) => res.data)
-      .then((res) => {
-        console.log(res);
-        setWordlistNames(res);
-        setSelectedWordlistId(res[0].id);
-        // console.log(wordlistNames); //why is this an empty array? is it because it's asynchronous? (A: yes - setting is)
-      });
-  }, []);
+  //userId constant
+  const userId = "333";
 
   // handle wordlist selection by user
   const [selectedWordlistId, setSelectedWordlistId] = useState();
+
+  //get wordlists info for names to display in dropdown box
+  const [wordlists, setWordlists] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`${BACKEND_URL}/wordlists/${userId}`)
+      .then((res) => res.data)
+      .then((res) => {
+        console.log(res);
+        setWordlists(res);
+        setSelectedWordlistId(res[0].id);
+        setSelectedWordlistName(res[0].name);
+        // console.log(wordlists); //why is this an empty array? is it because it's asynchronous? (A: yes - setting is)
+      });
+  }, []);
+
+  //axios get wordlist name selected stored in state
+  const [selectedWordlistName, setSelectedWordlistName] = useState();
 
   //axios get words from wordlist selected by User
   const [words, setWords] = useState([]);
@@ -36,11 +43,23 @@ const ListMakingPage = () => {
       .then((res) => {
         console.log(`This is res of submitWordListId ${res}`);
         setWords(res);
+        return axios.get(
+          `${BACKEND_URL}/wordlists/${userId}/${selectedWordlistId}`
+        );
+      })
+      .then((res) => res.data)
+      .then((res) => {
+        console.log(
+          `This is the res of the getting the individual wordlist: ${JSON.stringify(
+            res
+          )}`
+        );
+        setSelectedWordlistName(res.name);
       });
   };
   console.log(`Words are ${JSON.stringify(words)}`);
 
-  //  useState for word to be entered
+  //  useState for word to be added to be entered
   const [wordEntered, setWordEntered] = useState("");
 
   //useState for word to be added which is an empty set of objects
@@ -52,7 +71,7 @@ const ListMakingPage = () => {
     nameReadings: [],
   });
 
-  //alert box
+  //alert box for Mantine Modal
   const [opened, setOpened] = useState(false);
 
   //axios get the word from the kanji api via the blank
@@ -81,7 +100,7 @@ const ListMakingPage = () => {
         data: {
           wordlistId: selectedWordlistId,
           // userId: user.sub,
-          userId: 333,
+          userId: userId,
           kanji: wordToBeAdded.kanji,
           meanings: wordToBeAdded.meanings,
           kunReadings: wordToBeAdded.kun_readings,
@@ -169,9 +188,9 @@ const ListMakingPage = () => {
               // console.log(selectedWordlistId); // this prints empty because of setState again. you can't immediately check. if u want to check, use a useEffect
             }}
           >
-            {wordlistNames.map((wordlistName, index) => (
-              <option value={wordlistName.id} key={index}>
-                {wordlistName.name}
+            {wordlists.map((wordlist, index) => (
+              <option value={wordlist.id} key={index}>
+                {wordlist.name}
               </option>
             ))}
           </select>
@@ -236,6 +255,9 @@ const ListMakingPage = () => {
           No, cancel
         </button>
       </Modal>
+      <Container>
+        <Button>Test yourself on Wordlist: {selectedWordlistName}</Button>
+      </Container>
       <Container fluid>
         <Table striped withBorder className="listTable">
           <thead>{columns}</thead>
