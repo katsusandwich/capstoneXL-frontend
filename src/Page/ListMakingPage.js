@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import {
-  AspectRatio,
-  BackgroundImage,
-  Center,
-  Container,
-  Table,
-  Modal,
-  Stack,
-} from "@mantine/core";
+import { AspectRatio, Container, Table, Modal, Stack } from "@mantine/core";
 import "../CSS/listMakingPage.css";
 import { useNavigate } from "react-router";
 import { BACKEND_URL } from "../constants";
@@ -157,7 +149,9 @@ const ListMakingPage = () => {
   return (
     <AspectRatio ratio={390 / 844} className="listMakingDiv">
       <Stack>
-        <Container className="listMakingHeader">Modify Wordlist</Container>
+        <Container className="listMakingHeader" fluid>
+          Modify Wordlist
+        </Container>
         <Container>
           <form>
             <select
@@ -235,7 +229,7 @@ const ListMakingPage = () => {
             No, cancel
           </button>
         </Modal>
-        <Container>
+        <Container fluid>
           <Table striped withBorder className="listTable">
             <thead>{columns}</thead>
             <tbody>{rows}</tbody>
