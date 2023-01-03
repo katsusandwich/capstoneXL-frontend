@@ -149,7 +149,8 @@ const ListMakingPage = () => {
   return (
     <AspectRatio ratio={390 / 844} className="listMakingDiv">
       <Stack
-        justify="space-between"
+        align="flex-start"
+        justify="flex-start"
         sx={() => ({
           height: 844,
         })}
@@ -157,7 +158,7 @@ const ListMakingPage = () => {
         <Container className="listMakingHeader" fluid>
           Modify Wordlist
         </Container>
-        <Container>
+        <Container fluid>
           <form>
             <select
               value={selectedWordlistId}
@@ -182,7 +183,7 @@ const ListMakingPage = () => {
             </button>
           </form>
         </Container>
-        <Container>
+        <Container fluid>
           <form>
             <input
               type="text"
