@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { Button, Container, Table, Modal, Stack } from "@mantine/core";
 import "../CSS/listMakingPage.css";
 import { useNavigate } from "react-router";
@@ -264,7 +263,7 @@ const ListMakingPage = () => {
         </div>
       </Modal>
       <Container>
-        <Button onClick={() => navigate("/TestPage")}>
+        <Button onClick={() => navigate("/TestFormatPage")}>
           Test yourself on Wordlist: {selectedWordlistName}
         </Button>
       </Container>
