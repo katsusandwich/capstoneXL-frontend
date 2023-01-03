@@ -147,102 +147,103 @@ const ListMakingPage = () => {
   ));
 
   return (
-    <AspectRatio ratio={390 / 844} className="listMakingDiv">
-      <Stack
-        align="flex-start"
-        justify="flex-start"
-        sx={() => ({
-          height: 844,
-        })}
+    // <AspectRatio ratio={390 / 844}>
+    <Stack
+      align="flex-start"
+      justify="flex-start"
+      sx={() => ({
+        height: 844,
+      })}
+      className="listMakingDiv"
+    >
+      <Container className="listMakingHeader" fluid>
+        Modify Wordlist
+      </Container>
+      <Container fluid>
+        <form>
+          <select
+            value={selectedWordlistId}
+            onChange={(e) => {
+              console.log(`e.target.value is ${e.target.value}`);
+              setSelectedWordlistId(e.target.value);
+              // console.log(selectedWordlistId); // this prints empty because of setState again. you can't immediately check. if u want to check, use a useEffect
+            }}
+          >
+            {wordlistNames.map((wordlistName, index) => (
+              <option value={wordlistName.id} key={index}>
+                {wordlistName.name}
+              </option>
+            ))}
+          </select>
+          <button
+            type="button"
+            onClick={submitWordListId}
+            className="listMakingButton"
+          >
+            Choose Wordlist
+          </button>
+        </form>
+      </Container>
+      <Container fluid>
+        <form>
+          <input
+            type="text"
+            value={wordEntered}
+            onChange={(e) => {
+              console.log(`formbox is ${e.target.value}`);
+              setWordEntered(e.target.value);
+            }}
+          />
+          <button
+            type="button"
+            onClick={(event) => {
+              setOpened(true);
+              handleGetKanji(event);
+            }}
+            className="listMakingButton"
+            value="Add word"
+          >
+            Add word
+          </button>
+        </form>
+      </Container>
+      <Modal
+        opened={opened}
+        onClose={() => {
+          setOpened(false);
+          submitWordListId();
+          setWordEntered("");
+        }}
+        title="Do you want to add this word?"
       >
-        <Container className="listMakingHeader" fluid>
-          Modify Wordlist
-        </Container>
-        <Container fluid>
-          <form>
-            <select
-              value={selectedWordlistId}
-              onChange={(e) => {
-                console.log(`e.target.value is ${e.target.value}`);
-                setSelectedWordlistId(e.target.value);
-                // console.log(selectedWordlistId); // this prints empty because of setState again. you can't immediately check. if u want to check, use a useEffect
-              }}
-            >
-              {wordlistNames.map((wordlistName, index) => (
-                <option value={wordlistName.id} key={index}>
-                  {wordlistName.name}
-                </option>
-              ))}
-            </select>
-            <button
-              type="button"
-              onClick={submitWordListId}
-              className="listMakingButton"
-            >
-              Choose Wordlist
-            </button>
-          </form>
-        </Container>
-        <Container fluid>
-          <form>
-            <input
-              type="text"
-              value={wordEntered}
-              onChange={(e) => {
-                console.log(`formbox is ${e.target.value}`);
-                setWordEntered(e.target.value);
-              }}
-            />
-            <button
-              type="button"
-              onClick={(event) => {
-                setOpened(true);
-                handleGetKanji(event);
-              }}
-              className="listMakingButton"
-              value="Add word"
-            >
-              Add word
-            </button>
-          </form>
-        </Container>
-        <Modal
-          opened={opened}
-          onClose={() => {
+        {JSON.stringify(wordToBeAdded)}
+        <button
+          type="button"
+          onClick={handleAddWord}
+          className="listMakingButton"
+        >
+          Ok, add word
+        </button>
+        <button
+          type="button"
+          onClick={() => {
             setOpened(false);
             submitWordListId();
             setWordEntered("");
           }}
-          title="Do you want to add this word?"
+          className="listMakingButton"
         >
-          {JSON.stringify(wordToBeAdded)}
-          <button
-            type="button"
-            onClick={handleAddWord}
-            className="listMakingButton"
-          >
-            Ok, add word
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setOpened(false);
-              submitWordListId();
-              setWordEntered("");
-            }}
-            className="listMakingButton"
-          >
-            No, cancel
-          </button>
-        </Modal>
-        <Container fluid>
-          <Table striped withBorder className="listTable">
-            <thead>{columns}</thead>
-            <tbody>{rows}</tbody>
-          </Table>
-        </Container>
-      </Stack>
-    </AspectRatio>
+          No, cancel
+        </button>
+      </Modal>
+      <Container fluid>
+        <Table striped withBorder className="listTable">
+          <thead>{columns}</thead>
+          <tbody>{rows}</tbody>
+        </Table>
+      </Container>
+    </Stack>
+    // </AspectRatio>
   );
 };
 
