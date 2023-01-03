@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import { Table, Modal, Button, Group } from "@mantine/core";
+import {
+  AspectRatio,
+  BackgroundImage,
+  Center,
+  Container,
+  Table,
+  Modal,
+  Stack,
+} from "@mantine/core";
 import "../CSS/listMakingPage.css";
 import { useNavigate } from "react-router";
-// import { Button } from "@mui/material";
 import { BACKEND_URL } from "../constants";
-import { SignalCellularNullSharp } from "@mui/icons-material";
 
 const ListMakingPage = () => {
   let navigate = useNavigate();
@@ -103,7 +109,7 @@ const ListMakingPage = () => {
     }
   };
 
-  //VISUALS
+  //KANJI TABLE - VISUALS CODE
   //code for table columns
   const columns = (
     <tr>
@@ -149,117 +155,94 @@ const ListMakingPage = () => {
   ));
 
   return (
-    <div className="listMakingDiv">
-      <Grid2 container columnSpacing={0} rowSpacing={0}>
-        <Grid2 xs={12}>
-          <div className="listMakingHeader" align="middle">
-            {" "}
-            Modify Wordlist
-          </div>
-          <br />
-          <br />
-        </Grid2>
-        <Grid2>
-          <br />
-          <br /> <br />
-          <div>
-            <form>
-              <br /> <br />
-              Select Wordlist
-              <select
-                value={selectedWordlistId}
-                onChange={(e) => {
-                  console.log(`e.target.value is ${e.target.value}`);
-                  setSelectedWordlistId(e.target.value);
-                  // console.log(selectedWordlistId); // this prints empty because of setState again. you can't immediately check. if u want to check, use a useEffect
-                }}
-              >
-                {wordlistNames.map((wordlistName, index) => (
-                  <option value={wordlistName.id} key={index}>
-                    {wordlistName.name}
-                  </option>
-                ))}
-              </select>
-              <button
-                type="button"
-                onClick={submitWordListId}
-                className="listMakingButton"
-              >
-                Choose Wordlist
-              </button>
-            </form>
-          </div>
-        </Grid2>
-        <Grid2 xs={5}>
-          <div>
-            <form>
-              <input
-                type="text"
-                value={wordEntered}
-                onChange={(e) => {
-                  console.log(`formbox is ${e.target.value}`);
-                  setWordEntered(e.target.value);
-                }}
-              />
-              <button
-                type="button"
-                onClick={(event) => {
-                  setOpened(true);
-                  handleGetKanji(event);
-                }}
-                className="listMakingButton"
-                value="Add word"
-              >
-                Add word
-              </button>
-            </form>
-            <>
-              <Modal
-                opened={opened}
-                onClose={() => {
-                  setOpened(false);
-                  submitWordListId();
-                  setWordEntered("");
-                }}
-                title="Do you want to add this word?"
-              >
-                {JSON.stringify(wordToBeAdded)}
-                <div>
-                  <button
-                    type="button"
-                    onClick={handleAddWord}
-                    className="listMakingButton"
-                  >
-                    Ok, add word
-                  </button>
-                  <div>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setOpened(false);
-                        submitWordListId();
-                        setWordEntered("");
-                      }}
-                      className="listMakingButton"
-                    >
-                      No, cancel
-                    </button>
-                  </div>
-                </div>
-              </Modal>
-            </>
-          </div>
-          <div className="listTable" align="centre">
-            <Grid2 xs={5}>
-              <Table striped withBorder>
-                <thead>{columns}</thead>
-                <tbody>{rows}</tbody>
-              </Table>
-            </Grid2>
-          </div>
-        </Grid2>
-      </Grid2>
-    </div>
+    <AspectRatio ratio={390 / 844} className="listMakingDiv">
+      <Stack>
+        <Container className="listMakingHeader">Modify Wordlist</Container>
+        <Container>
+          <form>
+            <select
+              value={selectedWordlistId}
+              onChange={(e) => {
+                console.log(`e.target.value is ${e.target.value}`);
+                setSelectedWordlistId(e.target.value);
+                // console.log(selectedWordlistId); // this prints empty because of setState again. you can't immediately check. if u want to check, use a useEffect
+              }}
+            >
+              {wordlistNames.map((wordlistName, index) => (
+                <option value={wordlistName.id} key={index}>
+                  {wordlistName.name}
+                </option>
+              ))}
+            </select>
+            <button
+              type="button"
+              onClick={submitWordListId}
+              className="listMakingButton"
+            >
+              Choose Wordlist
+            </button>
+          </form>
+        </Container>
+        <Container>
+          <form>
+            <input
+              type="text"
+              value={wordEntered}
+              onChange={(e) => {
+                console.log(`formbox is ${e.target.value}`);
+                setWordEntered(e.target.value);
+              }}
+            />
+            <button
+              type="button"
+              onClick={(event) => {
+                setOpened(true);
+                handleGetKanji(event);
+              }}
+              className="listMakingButton"
+              value="Add word"
+            >
+              Add word
+            </button>
+          </form>
+        </Container>
+        <Modal
+          opened={opened}
+          onClose={() => {
+            setOpened(false);
+            submitWordListId();
+            setWordEntered("");
+          }}
+          title="Do you want to add this word?"
+        >
+          {JSON.stringify(wordToBeAdded)}
+          <button
+            type="button"
+            onClick={handleAddWord}
+            className="listMakingButton"
+          >
+            Ok, add word
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setOpened(false);
+              submitWordListId();
+              setWordEntered("");
+            }}
+            className="listMakingButton"
+          >
+            No, cancel
+          </button>
+        </Modal>
+        <Container>
+          <Table striped withBorder className="listTable">
+            <thead>{columns}</thead>
+            <tbody>{rows}</tbody>
+          </Table>
+        </Container>
+      </Stack>
+    </AspectRatio>
   );
 };
 
