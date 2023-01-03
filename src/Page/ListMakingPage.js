@@ -148,7 +148,12 @@ const ListMakingPage = () => {
 
   return (
     <AspectRatio ratio={390 / 844} className="listMakingDiv">
-      <Stack>
+      <Stack
+        justify="space-between"
+        sx={() => ({
+          height: 844,
+        })}
+      >
         <Container className="listMakingHeader" fluid>
           Modify Wordlist
         </Container>
