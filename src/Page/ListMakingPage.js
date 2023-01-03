@@ -14,10 +14,10 @@ const ListMakingPage = () => {
   const userId = "333";
 
   // handle wordlist selection by user
-  const [
+  const {
     selectedWordlistId,
     setSelectedWordlistId,
-  ] = useSelectedWordlistIdContext();
+  } = useSelectedWordlistIdContext();
 
   //get wordlists info for names to display in dropdown box
   const [wordlists, setWordlists] = useState([]);
