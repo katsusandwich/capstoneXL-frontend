@@ -7,12 +7,24 @@ import { BACKEND_URL } from "../constants";
 import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdContext";
 
 const TestFormatPage = () => {
+  let navigate = useNavigate();
+
   const {
     selectedWordlistId,
     setSelectedWordlistId,
   } = useSelectedWordlistIdContext();
 
-  return <div>{selectedWordlistId}</div>;
+  return (
+    <div>
+      <Container>
+        <Button onClick={() => navigate("/TestPage")}>
+          Test yourself on Wordlist: {selectedWordlistId}
+        </Button>
+      </Container>
+
+      {selectedWordlistId}
+    </div>
+  );
 };
 
 export default TestFormatPage;
