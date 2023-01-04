@@ -29,7 +29,6 @@ const TestPage = () => {
 
   //text input box
   const [answerEntered, setAnswerEntered] = useState("");
-  // const answerEntered = "ほたる";
   const key = "kun_readings";
 
   const kanji = {
