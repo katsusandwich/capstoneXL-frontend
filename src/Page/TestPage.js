@@ -31,7 +31,7 @@ const TestPage = () => {
   const [answerEntered, setAnswerEntered] = useState("");
   const key = "kun_readings";
 
-  const kanji = {
+  const word = {
     kanji: "蛍",
     meanings: ["lightning-bug", "firefly"],
     kun_readings: ["ほたる"],
@@ -40,16 +40,16 @@ const TestPage = () => {
   };
 
   //testing function
-  const testFunction = (answerEntered, key, kanji) => {
+  const testFunction = (answerEntered, key, word) => {
     // If the key exists in the object
-    if (key in kanji) {
+    if (key in word) {
       // Check if the value of the key is an array
-      if (Array.isArray(kanji[key])) {
+      if (Array.isArray(word[key])) {
         // Return true if the search string is a full and complete match for any element in the array
-        return kanji[key].some((val) => val === answerEntered);
+        return word[key].some((val) => val === answerEntered);
       } else {
         // Return true if the search string is a full and complete match for the value of the key
-        return answerEntered === kanji[key];
+        return answerEntered === word[key];
       }
     }
     // Otherwise, return false
@@ -82,8 +82,8 @@ const TestPage = () => {
             <button
               type="button"
               onClick={() => {
-                testFunction(answerEntered, key, kanji);
-                console.log(testFunction(answerEntered, key, kanji));
+                testFunction(answerEntered, key, word);
+                console.log(testFunction(answerEntered, key, word));
                 setAnswerEntered("");
               }}
               className="testButton"
