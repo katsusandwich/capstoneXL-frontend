@@ -5,6 +5,9 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { SelectedWordlistIdContextProvider } from "./Context/SelectedWordlistIdContext";
+import { SelectedWordlistNameContextProvider } from "./Context/SelectedWordlistNameContext";
+
+import { BackOfCardContextProvider } from "./Context/BackOfCardContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -16,9 +19,13 @@ root.render(
   //   scope="read:current_user update:current_user_metadata"
   // >
   <BrowserRouter>
-    <SelectedWordlistIdContextProvider>
-      <App />
-    </SelectedWordlistIdContextProvider>
+    <BackOfCardContextProvider>
+      <SelectedWordlistNameContextProvider>
+        <SelectedWordlistIdContextProvider>
+          <App />
+        </SelectedWordlistIdContextProvider>
+      </SelectedWordlistNameContextProvider>
+    </BackOfCardContextProvider>
   </BrowserRouter>
   // </Auth0Provider>
 );

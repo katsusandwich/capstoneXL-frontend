@@ -14,7 +14,26 @@ const TestPage = () => {
     setSelectedWordlistId,
   } = useSelectedWordlistIdContext();
 
-  return <div>{selectedWordlistId}</div>;
+  return (
+    <Stack
+      align="flex-start"
+      justify="flex-start"
+      sx={() => ({
+        height: 844,
+      })}
+      className="testDiv"
+    >
+      <div>
+        <Container className="testHeader" fluid>
+          Test in Progress: {selectedWordlistId}
+        </Container>
+
+        <Container>Test : {selectedWordlistId}</Container>
+
+        {selectedWordlistId}
+      </div>
+    </Stack>
+  );
 };
 
 export default TestPage;

@@ -5,6 +5,7 @@ import "../CSS/listMakingPage.css";
 import { useNavigate } from "react-router";
 import { BACKEND_URL } from "../constants";
 import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdContext";
+import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameContext";
 
 const ListMakingPage = () => {
   let navigate = useNavigate();
@@ -34,7 +35,10 @@ const ListMakingPage = () => {
   }, []);
 
   //axios get wordlist name selected stored in state
-  const [selectedWordlistName, setSelectedWordlistName] = useState();
+  const {
+    selectedWordlistName,
+    setSelectedWordlistName,
+  } = useSelectedWordlistNameContext();
 
   //axios get words from wordlist selected by User
   const [words, setWords] = useState([]);

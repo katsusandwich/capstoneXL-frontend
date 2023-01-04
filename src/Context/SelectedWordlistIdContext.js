@@ -14,7 +14,7 @@ function SelectedWordlistIdContextProvider({ children }) {
     </SelectedWordlistIdContext.Provider>
   );
 }
-// use context - I may not actually need this but I'll write it anyway
+// use context
 function useSelectedWordlistIdContext() {
   const context = useContext(SelectedWordlistIdContext);
   if (context === undefined) {
