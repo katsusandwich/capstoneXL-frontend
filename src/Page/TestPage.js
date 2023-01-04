@@ -28,8 +28,8 @@ const TestPage = () => {
   } = useSelectedWordlistNameContext();
 
   //text input box
-  // const [answerEntered, setAnswerEntered] = useState("");
-  const answerEntered = "hello";
+  const [answerEntered, setAnswerEntered] = useState("");
+  // const answerEntered = "ほたる";
   const key = "kun_readings";
 
   const kanji = {
@@ -38,19 +38,6 @@ const TestPage = () => {
     kun_readings: ["ほたる"],
     on_readings: ["ケイ"],
     name_readings: [],
-  };
-
-  //handle getTest
-  const handleGetTest = (event) => {
-    event.preventDefault();
-    // axios
-    //   .get(`https://kanjiapi.dev/v1/kanji/${wordEntered}`)
-    //   .then((res) => res.data)
-    //   .then((res) => {
-    //     console.log(`This is res of handleGetKanji ${JSON.stringify(res)}`);
-    //     setWordToBeAdded(res);
-    //     // console.log(`wordToBeAdded is ${JSON.stringify(wordToBeAdded)}`);　this is blank because asynchronous
-    //   });
   };
 
   //testing function
@@ -69,12 +56,6 @@ const TestPage = () => {
     // Otherwise, return false
     return false;
   };
-
-  //useEffect
-
-  useEffect(() => {
-    console.log(testFunction(answerEntered, key, kanji));
-  }, []);
 
   return (
     <Stack
@@ -96,13 +77,15 @@ const TestPage = () => {
               value={answerEntered}
               onChange={(e) => {
                 console.log(`answerEntered in input is ${e.target.value}`);
-                // setAnswerEntered(e.target.value);
+                setAnswerEntered(e.target.value);
               }}
             />
             <button
               type="button"
-              onClick={(event) => {
-                handleGetTest(event);
+              onClick={() => {
+                testFunction(answerEntered, key, kanji);
+                console.log(testFunction(answerEntered, key, kanji));
+                setAnswerEntered("");
               }}
               className="testButton"
               value="Check answer"
