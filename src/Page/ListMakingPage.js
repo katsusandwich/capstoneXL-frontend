@@ -4,6 +4,7 @@ import { Button, Container, Table, Modal, Stack } from "@mantine/core";
 import "../CSS/listMakingPage.css";
 import { useNavigate } from "react-router";
 import { BACKEND_URL } from "../constants";
+import WordTable from "../Component/WordTable";
 import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdContext";
 import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameContext";
 
@@ -271,12 +272,13 @@ const ListMakingPage = () => {
           Test yourself on Wordlist: {selectedWordlistName}
         </Button>
       </Container>
-      <Container fluid>
+      {WordTable(words)}
+      {/* <Container fluid>
         <Table striped withBorder className="listTable">
           <thead>{columns}</thead>
           <tbody>{rows}</tbody>
         </Table>
-      </Container>
+      </Container> */}
     </Stack>
     // </AspectRatio>
   );

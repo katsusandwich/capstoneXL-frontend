@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Button, Container, Table, Modal, Stack } from "@mantine/core";
+import {
+  Button,
+  Container,
+  Table,
+  Modal,
+  TextInput,
+  Stack,
+} from "@mantine/core";
 import "../CSS/listMakingPage.css";
 import { useNavigate } from "react-router";
 import { BACKEND_URL } from "../constants";
@@ -33,10 +40,7 @@ const TestPage = () => {
         <Container className="testHeader" fluid>
           Test in Progress: {selectedWordlistName}
         </Container>
-
-        <Container>Test : {selectedWordlistName}</Container>
-
-        {selectedWordlistName}
+        <TextInput placeholder="Your answer here" label="What is this?" />
       </div>
     </Stack>
   );
