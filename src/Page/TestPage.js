@@ -5,6 +5,7 @@ import "../CSS/listMakingPage.css";
 import { useNavigate } from "react-router";
 import { BACKEND_URL } from "../constants";
 import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdContext";
+import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameContext";
 
 const TestPage = () => {
   let navigate = useNavigate();
@@ -13,6 +14,11 @@ const TestPage = () => {
     selectedWordlistId,
     setSelectedWordlistId,
   } = useSelectedWordlistIdContext();
+
+  const {
+    selectedWordlistName,
+    setSelectedWordlistName,
+  } = useSelectedWordlistNameContext();
 
   return (
     <Stack
@@ -25,12 +31,12 @@ const TestPage = () => {
     >
       <div>
         <Container className="testHeader" fluid>
-          Test in Progress: {selectedWordlistId}
+          Test in Progress: {selectedWordlistName}
         </Container>
 
-        <Container>Test : {selectedWordlistId}</Container>
+        <Container>Test : {selectedWordlistName}</Container>
 
-        {selectedWordlistId}
+        {selectedWordlistName}
       </div>
     </Stack>
   );
