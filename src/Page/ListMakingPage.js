@@ -128,53 +128,7 @@ const ListMakingPage = () => {
     }
   };
 
-  //KANJI TABLE - VISUALS CODE
-  //code for table columns
-  const columns = (
-    <tr>
-      <th>Kanji</th>
-      <th>Meanings</th>
-      <th>Kun Readings</th>
-      <th>On Readings</th>
-      <th>Name Readings</th>
-    </tr>
-  );
-
-  //code for table rows
-  const rows = words.map((word) => (
-    <tr key={word.id}>
-      <td>{word.kanji}</td>
-      <td>
-        {word.meanings
-          ? word.meanings.map((meaning, index) => `${index + 1}.${meaning}\n`)
-          : "NA"}
-      </td>
-      <td>
-        {word.kunReadings
-          ? word.kunReadings.map(
-              (kunReading, index) => `${index + 1}.${kunReading}\n`
-            )
-          : "NA"}
-      </td>
-      <td>
-        {word.onReadings
-          ? word.onReadings.map(
-              (onReading, index) => `${index + 1}.${onReading}\n`
-            )
-          : "NA"}
-      </td>
-      <td>
-        {word.nameReadings
-          ? word.nameReadings.map(
-              (nameReading, index) => `${index + 1}.${nameReading}\n`
-            )
-          : "NA"}
-      </td>
-    </tr>
-  ));
-
   return (
-    // <AspectRatio ratio={390 / 844}>
     <Stack
       align="flex-start"
       justify="flex-start"
@@ -273,14 +227,7 @@ const ListMakingPage = () => {
         </Button>
       </Container>
       {WordTable(words)}
-      {/* <Container fluid>
-        <Table striped withBorder className="listTable">
-          <thead>{columns}</thead>
-          <tbody>{rows}</tbody>
-        </Table>
-      </Container> */}
     </Stack>
-    // </AspectRatio>
   );
 };
 
