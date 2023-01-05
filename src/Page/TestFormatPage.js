@@ -37,16 +37,6 @@ const TestFormatPage = () => {
 
   const { backOfCard, setBackOfCard } = useBackOfCardContext();
 
-  const thingToDoIfAxiosGetWordListIsNotEmpty = (res) => {
-    console.log(`This is the wordlistToBeTested: ${JSON.stringify(res)}`);
-    setWordlistToBeTested(res);
-  };
-
-  const thingToDoIfAxiosGetWordListIsEmpty = (res) => {
-    console.log(`This is the wordlistToBeTested: ${JSON.stringify(res)}`);
-    alert("No words!");
-  };
-
   //button to choose testFormat
   const submitBackOfCard = () => {
     console.log(`pressbutton backOfCard is ${backOfCard}`);

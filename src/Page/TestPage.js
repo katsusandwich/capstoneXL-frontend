@@ -16,7 +16,7 @@ import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameC
 import { useBackOfCardContext } from "../Context/BackOfCardContext";
 import { useWordlistToBeTestedContext } from "../Context/WordlistToBeTestedContext";
 
-import TestFunction from "../Component/TestFunction";
+import { TestFunction } from "../Component/TestFunction";
 
 const TestPage = () => {
   let navigate = useNavigate();
