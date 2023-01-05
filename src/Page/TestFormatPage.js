@@ -72,6 +72,15 @@ const TestFormatPage = () => {
         }
         console.log(`This is the wordlistToBeTested: ${JSON.stringify(res)}`);
         setWordlistToBeTested(res);
+        return wordlistToBeTested;
+      })
+      .then((wordlistToBeTested) => {
+        shuffleWordlistToBeTested(wordlistToBeTested);
+        console.log(
+          `This is the shuffled wordlistToBeTested ${JSON.stringify(
+            wordlistToBeTested
+          )}`
+        );
       })
       .catch((error) => {
         alert(`Unknown error!`);
@@ -116,24 +125,19 @@ const TestFormatPage = () => {
               <option value="nameReadings">Name Reading</option>
               <option value="meanings">Meaning</option>
             </select>
-            <button
+            {/* <button
               type="button"
               onClick={submitBackOfCard}
               className="testButton"
             >
               Choose Kanji Aspect
-            </button>
+            </button> */}
           </form>
         </Container>
         <Container>
           <Button
             onClick={() => {
-              shuffleWordlistToBeTested(wordlistToBeTested);
-              console.log(
-                `This is the shuffled wordlistToBeTested ${JSON.stringify(
-                  wordlistToBeTested
-                )}`
-              );
+              submitBackOfCard();
               // navigate("/TestPage");
             }}
           >
