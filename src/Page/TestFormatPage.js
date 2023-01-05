@@ -7,6 +7,7 @@ import { BACKEND_URL } from "../constants";
 import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdContext";
 import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameContext";
 import { useBackOfCardContext } from "../Context/BackOfCardContext";
+import { useWordlistToBeTestedContext } from "../Context/WordlistToBeTestedContext";
 
 const TestFormatPage = () => {
   let navigate = useNavigate();
@@ -28,6 +29,11 @@ const TestFormatPage = () => {
     selectedWordlistName,
     setSelectedWordlistName,
   } = useSelectedWordlistNameContext();
+
+  const {
+    wordlistToBeTested,
+    setWordlistToBeTested,
+  } = useWordlistToBeTestedContext();
 
   const { backOfCard, setBackOfCard } = useBackOfCardContext();
 

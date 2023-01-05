@@ -6,7 +6,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { SelectedWordlistIdContextProvider } from "./Context/SelectedWordlistIdContext";
 import { SelectedWordlistNameContextProvider } from "./Context/SelectedWordlistNameContext";
-
+import { WordlistToBeTestedContextProvider } from "./Context/WordlistToBeTestedContext";
 import { BackOfCardContextProvider } from "./Context/BackOfCardContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -22,7 +22,9 @@ root.render(
     <BackOfCardContextProvider>
       <SelectedWordlistNameContextProvider>
         <SelectedWordlistIdContextProvider>
-          <App />
+          <WordlistToBeTestedContextProvider>
+            <App />
+          </WordlistToBeTestedContextProvider>
         </SelectedWordlistIdContextProvider>
       </SelectedWordlistNameContextProvider>
     </BackOfCardContextProvider>

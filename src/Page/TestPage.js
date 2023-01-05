@@ -14,6 +14,8 @@ import { BACKEND_URL, word } from "../constants";
 import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdContext";
 import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameContext";
 import { useBackOfCardContext } from "../Context/BackOfCardContext";
+import { useWordlistToBeTestedContext } from "../Context/WordlistToBeTestedContext";
+
 import TestFunction from "../Component/TestFunction";
 
 const TestPage = () => {
@@ -30,6 +32,11 @@ const TestPage = () => {
   } = useSelectedWordlistNameContext();
 
   const { backOfCard, setBackOfCard } = useBackOfCardContext();
+
+  const {
+    wordlistToBeTested,
+    setWordlistToBeTested,
+  } = useWordlistToBeTestedContext();
 
   //text input box
   const [answerEntered, setAnswerEntered] = useState("");
