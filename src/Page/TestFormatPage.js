@@ -139,8 +139,6 @@ const TestFormatPage = () => {
             Test yourself on Wordlist: {selectedWordlistName}
           </Button>
         </Container>
-
-        {selectedWordlistName}
       </div>
     </Stack>
   );
