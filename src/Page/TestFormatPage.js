@@ -76,7 +76,7 @@ const TestFormatPage = () => {
       .then((res) => {
         if (JSON.stringify(res) === "[]") {
           alert(
-            `There are no words in the wordlist selected that fit this testing criteria`
+            `There are no words in the wordlist selected that fit this testing criteria - please choose a different one.`
           );
         }
         console.log(`This is the wordlistToBeTested: ${JSON.stringify(res)}`);
