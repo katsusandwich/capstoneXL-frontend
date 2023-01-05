@@ -119,7 +119,7 @@ const TestFormatPage = () => {
             <button
               type="button"
               onClick={submitBackOfCard}
-              className="choosing aspect of kanji"
+              className="testButton"
             >
               Choose Kanji Aspect
             </button>
