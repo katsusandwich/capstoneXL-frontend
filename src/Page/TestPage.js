@@ -13,6 +13,7 @@ import { useNavigate } from "react-router";
 import { BACKEND_URL } from "../constants";
 import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdContext";
 import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameContext";
+// import { useBackOfCardContext } from "../Context/BackOfCardContext";
 
 const TestPage = () => {
   let navigate = useNavigate();
@@ -27,9 +28,11 @@ const TestPage = () => {
     setSelectedWordlistName,
   } = useSelectedWordlistNameContext();
 
+  // const { backOfCard, setBackOfCard } = useBackOfCardContext();
+
   //text input box
   const [answerEntered, setAnswerEntered] = useState("");
-  const key = "kun_readings";
+  const backOfCard = "kun_readings";
 
   const word = {
     kanji: "蛍",
@@ -39,21 +42,16 @@ const TestPage = () => {
     name_readings: [],
   };
 
-  //testing function
-  const testFunction = (answerEntered, key, word) => {
-    // If the key exists in the object
-    if (key in word) {
-      // Check if the value of the key is an array
-      if (Array.isArray(word[key])) {
-        // Return true if the search string is a full and complete match for any element in the array
-        return word[key].some((val) => val === answerEntered);
-      } else {
-        // Return true if the search string is a full and complete match for the value of the key
-        return answerEntered === word[key];
-      }
+  //testing function that does not take in backOfCard
+  const testFunction = (answerEntered, word) => {
+    // Check if the value of the key is an array
+    if (Array.isArray(word[backOfCard])) {
+      // Return true if the search string is a full and complete match for any element in the array
+      return word[backOfCard].some((val) => val === answerEntered);
+    } else {
+      // Return true if the search string is a full and complete match for the value of the key
+      return answerEntered === word[backOfCard];
     }
-    // Otherwise, return false
-    return false;
   };
 
   return (
@@ -82,8 +80,13 @@ const TestPage = () => {
             <button
               type="button"
               onClick={() => {
-                testFunction(answerEntered, key, word);
-                console.log(testFunction(answerEntered, key, word));
+                testFunction(answerEntered, word);
+                console.log(
+                  `The result of testFunction is ${testFunction(
+                    answerEntered,
+                    word
+                  )}`
+                );
                 setAnswerEntered("");
               }}
               className="testButton"
