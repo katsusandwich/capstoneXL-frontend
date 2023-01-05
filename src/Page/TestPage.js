@@ -10,12 +10,11 @@ import {
 } from "@mantine/core";
 import "../CSS/testPage.css";
 import { useNavigate } from "react-router";
-import { BACKEND_URL, word, backOfCard } from "../constants";
+import { BACKEND_URL, word } from "../constants";
 import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdContext";
 import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameContext";
+import { useBackOfCardContext } from "../Context/BackOfCardContext";
 import TestFunction from "../Component/TestFunction";
-
-// import { useBackOfCardContext } from "../Context/BackOfCardContext";
 
 const TestPage = () => {
   let navigate = useNavigate();
@@ -30,7 +29,7 @@ const TestPage = () => {
     setSelectedWordlistName,
   } = useSelectedWordlistNameContext();
 
-  // const { backOfCard, setBackOfCard } = useBackOfCardContext();
+  const { backOfCard, setBackOfCard } = useBackOfCardContext();
 
   //text input box
   const [answerEntered, setAnswerEntered] = useState("");
@@ -45,8 +44,14 @@ const TestPage = () => {
       className="testDiv"
     >
       <div>
+        <Container>
+          <Button onClick={() => navigate("/TestFormatPage")}>
+            Choose different test format
+          </Button>
+        </Container>
+
         <Container className="testHeader" fluid>
-          Test in Progress: {selectedWordlistName}
+          Test in Progress: {selectedWordlistName} {backOfCard}
         </Container>
         <Container>
           <form>
