@@ -37,6 +37,16 @@ const TestFormatPage = () => {
 
   const { backOfCard, setBackOfCard } = useBackOfCardContext();
 
+  const thingToDoIfAxiosGetWordListIsNotEmpty = (res) => {
+    console.log(`This is the wordlistToBeTested: ${JSON.stringify(res)}`);
+    setWordlistToBeTested(res);
+  };
+
+  const thingToDoIfAxiosGetWordListIsEmpty = (res) => {
+    console.log(`This is the wordlistToBeTested: ${JSON.stringify(res)}`);
+    alert("No words!");
+  };
+
   //button to choose testFormat
   const submitBackOfCard = () => {
     console.log(`pressbutton backOfCard is ${backOfCard}`);
@@ -64,17 +74,16 @@ const TestFormatPage = () => {
       .get(path)
       .then((res) => res.data)
       .then((res) => {
-        if (res === "[]") {
+        if (JSON.stringify(res) === "[]") {
           alert(
             `There are no words in the wordlist selected that fit this testing criteria`
           );
         }
         console.log(`This is the wordlistToBeTested: ${JSON.stringify(res)}`);
-        // setWordlistToBeTested
         setWordlistToBeTested(res);
       })
       .catch((error) => {
-        alert(`Generic error!`);
+        alert(`Unknown error!`);
         console.error(`Error in getting wordistToBeTested`);
       });
   };
