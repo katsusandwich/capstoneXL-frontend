@@ -10,9 +10,11 @@ import {
 } from "@mantine/core";
 import "../CSS/testPage.css";
 import { useNavigate } from "react-router";
-import { BACKEND_URL } from "../constants";
+import { BACKEND_URL, word, backOfCard } from "../constants";
 import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdContext";
 import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameContext";
+import TestFunction from "../Component/TestFunction";
+
 // import { useBackOfCardContext } from "../Context/BackOfCardContext";
 
 const TestPage = () => {
@@ -32,27 +34,6 @@ const TestPage = () => {
 
   //text input box
   const [answerEntered, setAnswerEntered] = useState("");
-  const backOfCard = "kun_readings";
-
-  const word = {
-    kanji: "蛍",
-    meanings: ["lightning-bug", "firefly"],
-    kun_readings: ["ほたる"],
-    on_readings: ["ケイ"],
-    name_readings: [],
-  };
-
-  //testing function that does not take in backOfCard
-  const testFunction = (answerEntered, word) => {
-    // Check if the value of the key is an array
-    if (Array.isArray(word[backOfCard])) {
-      // Return true if the search string is a full and complete match for any element in the array
-      return word[backOfCard].some((val) => val === answerEntered);
-    } else {
-      // Return true if the search string is a full and complete match for the value of the key
-      return answerEntered === word[backOfCard];
-    }
-  };
 
   return (
     <Stack
@@ -80,11 +61,12 @@ const TestPage = () => {
             <button
               type="button"
               onClick={() => {
-                testFunction(answerEntered, word);
+                TestFunction(answerEntered, word, backOfCard);
                 console.log(
-                  `The result of testFunction is ${testFunction(
+                  `The result of TestFunction is ${TestFunction(
                     answerEntered,
-                    word
+                    word,
+                    backOfCard
                   )}`
                 );
                 setAnswerEntered("");
