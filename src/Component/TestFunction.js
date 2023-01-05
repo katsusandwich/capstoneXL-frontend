@@ -7,7 +7,7 @@ import "../CSS/listMakingPage.css";
 // import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdContext";
 // import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameContext";
 
-const TestFunction = (answerEntered, word, backOfCard) => {
+export const TestFunction = (answerEntered, word, backOfCard) => {
   // //testing function that does not take in backOfCard
   //   // Check if the value of the key is an array
   if (Array.isArray(word[backOfCard])) {
@@ -19,4 +19,25 @@ const TestFunction = (answerEntered, word, backOfCard) => {
   }
 };
 
-export default TestFunction;
+export var shuffleWordlistToBeTested = function(wordlistToBeTested) {
+  const getRandomIndex = function(size) {
+    return Math.floor(Math.random() * size);
+  };
+
+  var index = 0;
+
+  while (index < wordlistToBeTested.length) {
+    var randomIndex = getRandomIndex(wordlistToBeTested.length);
+
+    var currentItem = wordlistToBeTested[index];
+
+    var randomItem = wordlistToBeTested[randomIndex];
+
+    wordlistToBeTested[index] = randomItem;
+    wordlistToBeTested[randomIndex] = currentItem;
+
+    index = index + 1;
+  }
+
+  return wordlistToBeTested;
+};

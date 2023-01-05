@@ -4,6 +4,7 @@ import { Button, Container, Table, Modal, Select, Stack } from "@mantine/core";
 import "../CSS/testPage.css";
 import { useNavigate } from "react-router";
 import { BACKEND_URL } from "../constants";
+import { shuffleWordlistToBeTested } from "../Component/TestFunction";
 import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdContext";
 import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameContext";
 import { useBackOfCardContext } from "../Context/BackOfCardContext";
@@ -125,7 +126,17 @@ const TestFormatPage = () => {
           </form>
         </Container>
         <Container>
-          <Button onClick={() => navigate("/TestPage")}>
+          <Button
+            onClick={() => {
+              shuffleWordlistToBeTested(wordlistToBeTested);
+              console.log(
+                `This is the shuffled wordlistToBeTested ${JSON.stringify(
+                  wordlistToBeTested
+                )}`
+              );
+              // navigate("/TestPage");
+            }}
+          >
             Test yourself on Wordlist: {selectedWordlistName}
           </Button>
         </Container>
