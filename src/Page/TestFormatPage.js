@@ -38,28 +38,45 @@ const TestFormatPage = () => {
   const { backOfCard, setBackOfCard } = useBackOfCardContext();
 
   //button to choose testFormat
-
   const submitBackOfCard = () => {
     console.log(`pressbutton backOfCard is ${backOfCard}`);
-    // axios
-    //   .get(`${BACKEND_URL}/words/${selectedWordlistId}`)
-    //   .then((res) => res.data)
-    //   .then((res) => {
-    //     console.log(`This is res of submitWordListId ${res}`);
-    //     setWords(res);
-    //     return axios.get(
-    //       `${BACKEND_URL}/wordlists/${userId}/${selectedWordlistId}`
-    //     );
-    //   })
-    //   .then((res) => res.data)
-    //   .then((res) => {
-    //     console.log(
-    //       `This is the res of the getting the individual wordlist: ${JSON.stringify(
-    //         res
-    //       )}`
-    //     );
-    //     setSelectedWordlistName(res.name);
-    //   });
+
+    let path = "";
+    switch (backOfCard) {
+      case "meanings":
+        path = `${BACKEND_URL}/words/${selectedWordlistId}`;
+        break;
+      case "kunReadings":
+        path = `${BACKEND_URL}/words/${selectedWordlistId}/kunReadings`;
+        break;
+      case "onReadings":
+        path = `${BACKEND_URL}/words/${selectedWordlistId}/onReadings`;
+        break;
+      case "nameReadings":
+        path = `${BACKEND_URL}/words/${selectedWordlistId}/nameReadings`;
+        break;
+      default:
+        // throw error or default value
+        break;
+    }
+
+    axios
+      .get(path)
+      .then((res) => res.data)
+      .then((res) => {
+        if (res === "[]") {
+          alert(
+            `There are no words in the wordlist selected that fit this testing criteria`
+          );
+        }
+        console.log(`This is the wordlistToBeTested: ${JSON.stringify(res)}`);
+        // setWordlistToBeTested
+        setWordlistToBeTested(res);
+      })
+      .catch((error) => {
+        alert(`Generic error!`);
+        console.error(`Error in getting wordistToBeTested`);
+      });
   };
 
   return (
