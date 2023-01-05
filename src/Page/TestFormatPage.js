@@ -11,6 +11,13 @@ import { useBackOfCardContext } from "../Context/BackOfCardContext";
 const TestFormatPage = () => {
   let navigate = useNavigate();
 
+  //set default choice of kanji aspect by the user
+
+  useEffect(() => {
+    setBackOfCard("kunReadings");
+    console.log(`backOfCarduseEffect is ${backOfCard}`);
+  }, []);
+
   //bring in contexts
   const {
     selectedWordlistId,
@@ -24,9 +31,30 @@ const TestFormatPage = () => {
 
   const { backOfCard, setBackOfCard } = useBackOfCardContext();
 
-  //back of card options - think this will need to be able to mirror the structure of the kanji word in the database
+  //button to choose testFormat
 
-  // const backOfCardOptions = ["Meanings"];
+  const submitBackOfCard = () => {
+    console.log(`pressbutton backOfCard is ${backOfCard}`);
+    // axios
+    //   .get(`${BACKEND_URL}/words/${selectedWordlistId}`)
+    //   .then((res) => res.data)
+    //   .then((res) => {
+    //     console.log(`This is res of submitWordListId ${res}`);
+    //     setWords(res);
+    //     return axios.get(
+    //       `${BACKEND_URL}/wordlists/${userId}/${selectedWordlistId}`
+    //     );
+    //   })
+    //   .then((res) => res.data)
+    //   .then((res) => {
+    //     console.log(
+    //       `This is the res of the getting the individual wordlist: ${JSON.stringify(
+    //         res
+    //       )}`
+    //     );
+    //     setSelectedWordlistName(res.name);
+    //   });
+  };
 
   return (
     <Stack
@@ -51,44 +79,28 @@ const TestFormatPage = () => {
           Which aspect of a Kanji do you want to test yourself on?
         </Container>
         <Container>
-          {/* <form>
+          <form>
             <select
+              name="backOfCard"
               value={backOfCard}
               onChange={(e) => {
                 console.log(`e.target.value is ${e.target.value}`);
                 setBackOfCard(e.target.value);
-                // console.log(selectedWordlistId); // this prints empty because of setState again. you can't immediately check. if u want to check, use a useEffect
               }}
             >
-              {wordlists.map((wordlist, index) => (
-                <option value={wordlist.id} key={index}>
-                  {wordlist.name}
-                </option>
-              ))}
+              <option value="kunReadings">Kun Reading</option>
+              <option value="onReadings">On Reading</option>
+              <option value="nameReadings">Name Reading</option>
+              <option value="meanings">Meaning</option>
             </select>
             <button
               type="button"
-              onClick={submitWordListId}
-              className="listMakingButton"
+              onClick={submitBackOfCard}
+              className="choosing aspect of kanji"
             >
-              Choose Wordlist
+              Choose Kanji Aspect
             </button>
           </form>
-          {/* <Select 
-          label="Aspect of a Kanji" placeholder="Pick one" data=
-          {[
-            { value: "meanings", label: "Meaning" },
-            { value: "kunReadings", label: "Kun reading" },
-            { value: "onReadings", label: "On Reading" },
-            { value: "nameReadings", label: "Name Reading" },
-          ]}
-          value={data.value}
-          onChange=
-          {(e) => {
-            console.log(`e.target.value is ${e.target.value}`);
-            setBackOfCard(e.target.value);
-          }}
-        /> */}
         </Container>
         <Container>
           <Button onClick={() => navigate("/TestPage")}>
