@@ -81,6 +81,7 @@ const TestFormatPage = () => {
             wordlistToBeTested
           )}`
         );
+        return wordlistToBeTested;
       })
       .catch((error) => {
         alert(`Unknown error!`);
