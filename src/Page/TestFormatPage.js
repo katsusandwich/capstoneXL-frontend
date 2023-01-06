@@ -138,7 +138,7 @@ const TestFormatPage = () => {
           <Button
             onClick={() => {
               submitBackOfCard();
-              // navigate("/TestPage");
+              navigate("/TestPage");
             }}
           >
             Test yourself on Wordlist: {selectedWordlistName}
