@@ -125,13 +125,6 @@ const TestFormatPage = () => {
               <option value="nameReadings">Name Reading</option>
               <option value="meanings">Meaning</option>
             </select>
-            {/* <button
-              type="button"
-              onClick={submitBackOfCard}
-              className="testButton"
-            >
-              Choose Kanji Aspect
-            </button> */}
           </form>
         </Container>
         <Container>
