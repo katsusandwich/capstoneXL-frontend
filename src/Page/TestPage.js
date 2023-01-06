@@ -160,24 +160,26 @@ const TestPage = () => {
               <button
                 type="button"
                 onClick={() => {
-                  answerEntered === ""
-                    ? alert(`Please at least try to answer`)
-                    : TestFunction(answerEntered, userHand, backOfCard);
-                  console.log(
-                    `The result of TestFunction is ${TestFunction(
-                      answerEntered,
-                      userHand,
-                      backOfCard
-                    )}`
-                  );
-                  // setIndividualQuestionResult(
-                  //   TestFunction(answerEntered, userHand, backOfCard)
-                  // );
-                  TestFunction(answerEntered, userHand, backOfCard)
-                    ? setIndividualQuestionResult(true)
-                    : setIndividualQuestionResult(false);
-                  setOpenedResult(true);
-                  setAnswerEntered("");
+                  if (answerEntered === "") {
+                    alert(`Please at least try to answer`);
+                  } else {
+                    TestFunction(answerEntered, userHand, backOfCard);
+                    console.log(
+                      `The result of TestFunction is ${TestFunction(
+                        answerEntered,
+                        userHand,
+                        backOfCard
+                      )}`
+                    );
+                    // setIndividualQuestionResult(
+                    //   TestFunction(answerEntered, userHand, backOfCard)
+                    // );
+                    TestFunction(answerEntered, userHand, backOfCard)
+                      ? setIndividualQuestionResult(true)
+                      : setIndividualQuestionResult(false);
+                    setOpenedResult(true);
+                    setAnswerEntered("");
+                  }
                 }}
                 className="testButton"
                 value="Check answer"

@@ -8,7 +8,6 @@
   color: black;
   /* position: absolute; */
   width: 100%;
-  left: 0px;
 }
 
 .listMakingHeader {
@@ -19,7 +18,7 @@
   width: 100%;
   /* margin: 0;
   /* position: top; */
-  top: 10%;
+  /* top: 10%; */
   /* -ms-transform: translateY(-90%);
   transform: translateY(-20%); */
 }

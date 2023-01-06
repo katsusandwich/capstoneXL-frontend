@@ -85,16 +85,20 @@ const ListMakingPage = () => {
   const [opened, setOpened] = useState(false);
 
   //axios get the word from the kanji api via the blank
-  const handleGetKanji = (event) => {
-    event.preventDefault();
-    axios
-      .get(`https://kanjiapi.dev/v1/kanji/${wordEntered}`)
-      .then((res) => res.data)
-      .then((res) => {
-        console.log(`This is res of handleGetKanji ${JSON.stringify(res)}`);
-        setWordToBeAdded(res);
-        // console.log(`wordToBeAdded is ${JSON.stringify(wordToBeAdded)}`);　this is blank because asynchronous
-      });
+  const handleGetKanji = async (event) => {
+    try {
+      event.preventDefault();
+      axios
+        .get(`https://kanjiapi.dev/v1/kanji/${wordEntered}`)
+        .then((res) => res.data)
+        .then((res) => {
+          console.log(`This is res of handleGetKanji ${JSON.stringify(res)}`);
+          setWordToBeAdded(res);
+          // console.log(`wordToBeAdded is ${JSON.stringify(wordToBeAdded)}`);　this is blank because asynchronous
+        });
+    } catch (err) {
+      alert(`What you entered was probably not a kanji`);
+    }
   };
 
   //handleAddWord will contain axios post for add word
@@ -180,8 +184,12 @@ const ListMakingPage = () => {
           <button
             type="button"
             onClick={(event) => {
-              setOpened(true);
-              handleGetKanji(event);
+              if (wordEntered === "") {
+                alert(`Please enter a kanji to be added.`);
+              } else {
+                setOpened(true);
+                handleGetKanji(event);
+              }
             }}
             className="listMakingButton"
             value="Add word"
