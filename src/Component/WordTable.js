@@ -1,6 +1,6 @@
 import React from "react";
 // import axios from "axios";
-import { Container, Table } from "@mantine/core";
+import { Container, Table, Center } from "@mantine/core";
 import "../CSS/listMakingPage.css";
 // import { useNavigate } from "react-router";
 // import { BACKEND_URL } from "../constants";
@@ -54,12 +54,14 @@ const WordTable = (props) => {
   ));
 
   return (
-    <Container fluid>
-      <Table striped withBorder className="listTable">
-        <thead>{columns}</thead>
-        <tbody>{rows}</tbody>
-      </Table>
-    </Container>
+    <Center>
+      <Container>
+        <Table striped withBorder className="listTable">
+          <thead>{columns}</thead>
+          <tbody>{rows}</tbody>
+        </Table>
+      </Container>
+    </Center>
   );
 };
 
