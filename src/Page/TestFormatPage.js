@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Button, Container, Table, Modal, Select, Stack } from "@mantine/core";
+import {
+  Button,
+  Container,
+  Table,
+  Modal,
+  Select,
+  Stack,
+  Center,
+  Text,
+} from "@mantine/core";
 import "../CSS/testPage.css";
 import { useNavigate } from "react-router";
 import { BACKEND_URL } from "../constants";
@@ -104,63 +113,65 @@ const TestFormatPage = () => {
   };
 
   return (
-    <Stack
-      align="flex-start"
-      justify="flex-start"
-      sx={() => ({
-        height: 844,
-      })}
-      className="testDiv"
-    >
-      <div>
-        <Container>
-          <Button onClick={() => navigate("/ListMakingPage")}>
-            Choose different list
-          </Button>
-        </Container>
+    <Center>
+      <Stack
+        align="flex-start"
+        justify="flex-start"
+        sx={() => ({
+          height: 844,
+        })}
+        className="testDiv"
+      >
+        <div>
+          <Container>
+            <Button onClick={() => navigate("/ListMakingPage")}>
+              Choose different list
+            </Button>
+          </Container>
 
-        <Container className="testHeader" fluid>
-          Choose Test Format: {selectedWordlistName}
-        </Container>
-        <Container className="testFormat">
-          Which aspect of a Kanji do you want to test yourself on?
-        </Container>
-        <Modal
-          opened={opened}
-          onClose={() => {
-            setOpened(false);
-            setTestNoWords(false);
-          }}
-          title="There are no words in the wordlist selected that fit this testing criteria - please choose a different one."
-        ></Modal>
-        <Container>
-          <form>
-            <select
-              name="backOfCard"
-              value={backOfCard}
-              onChange={(e) => {
-                console.log(`e.target.value is ${e.target.value}`);
-                setBackOfCard(e.target.value);
+          <Container className="testHeader" fluid>
+            <Text>{selectedWordlistName}</Text>
+          </Container>
+          <Container className="testFormat">
+            Choose Kanji aspect to test
+          </Container>
+          <Modal
+            opened={opened}
+            onClose={() => {
+              setOpened(false);
+              setTestNoWords(false);
+            }}
+            title="There are no words in the wordlist selected that fit this testing criteria - please choose a different one."
+          ></Modal>
+          <Container>
+            <form>
+              <select
+                name="backOfCard"
+                value={backOfCard}
+                onChange={(e) => {
+                  console.log(`e.target.value is ${e.target.value}`);
+                  setBackOfCard(e.target.value);
+                }}
+              >
+                <option value="kunReadings">Kun Reading</option>
+                <option value="onReadings">On Reading</option>
+                <option value="nameReadings">Name Reading</option>
+                <option value="meanings">Meaning</option>
+              </select>
+            </form>
+          </Container>
+          <Container>
+            <Button
+              onClick={() => {
+                submitBackOfCard();
               }}
             >
-              <option value="kunReadings">Kun Reading</option>
-              <option value="onReadings">On Reading</option>
-              <option value="nameReadings">Name Reading</option>
-              <option value="meanings">Meaning</option>
-            </select>
-          </form>
-        </Container>
-        <Container>
-          <Button
-            onClick={() => {
-              submitBackOfCard();
-            }}
-          >
-            Test yourself on Wordlist: {selectedWordlistName}
-          </Button>
-        </Container>
-      </div>
-    </Stack>
+              Test yourself on Wordlist: {selectedWordlistName}
+            </Button>
+          </Container>
+        </div>
+      </Stack>
+    </Center>
   );
 };
 
