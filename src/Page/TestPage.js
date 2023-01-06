@@ -15,11 +15,13 @@ import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdConte
 import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameContext";
 import { useBackOfCardContext } from "../Context/BackOfCardContext";
 import { useWordlistToBeTestedContext } from "../Context/WordlistToBeTestedContext";
+import { IndividualQuestionResultContextProvider } from "./Context/IndividualQuestionResultContext";
 import {
   TestFunction,
   ResultFunction,
   shuffleWordlistToBeTested,
 } from "../Component/TestFunction";
+import { useIndividualQuestionResultContext } from "../Context/IndividualQuestionResultContext";
 
 const TestPage = () => {
   let navigate = useNavigate();
@@ -50,6 +52,11 @@ const TestPage = () => {
     wordlistToBeTested,
     setWordlistToBeTested,
   } = useWordlistToBeTestedContext();
+
+  const {
+    individualQuestionResult,
+    setIndividualQuestionResult,
+  } = useIndividualQuestionResultContext();
 
   //text input box
   const [answerEntered, setAnswerEntered] = useState("");

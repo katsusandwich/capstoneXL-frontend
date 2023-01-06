@@ -8,6 +8,7 @@ import { SelectedWordlistIdContextProvider } from "./Context/SelectedWordlistIdC
 import { SelectedWordlistNameContextProvider } from "./Context/SelectedWordlistNameContext";
 import { WordlistToBeTestedContextProvider } from "./Context/WordlistToBeTestedContext";
 import { BackOfCardContextProvider } from "./Context/BackOfCardContext";
+import { IndividualQuestionResultContextProvider } from "./Context/IndividualQuestionResultContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -23,7 +24,9 @@ root.render(
       <SelectedWordlistNameContextProvider>
         <SelectedWordlistIdContextProvider>
           <WordlistToBeTestedContextProvider>
-            <App />
+            <IndividualQuestionResultContextProvider>
+              <App />
+            </IndividualQuestionResultContextProvider>
           </WordlistToBeTestedContextProvider>
         </SelectedWordlistIdContextProvider>
       </SelectedWordlistNameContextProvider>
