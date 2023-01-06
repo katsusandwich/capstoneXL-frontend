@@ -79,7 +79,8 @@ const TestPage = () => {
     try {
       await setUserHand(wordlistToBeTested.pop());
       console.log(userHand);
-      setOpenedQuestion(true);
+
+      userHand ? setOpenedQuestion(true) : setOpenedScore(true);
     } catch (e) {
       console.log(e);
     }
@@ -183,12 +184,37 @@ const TestPage = () => {
                 onClick={(e) => {
                   dealWordCardToUserHand(e);
                   setOpenedResult(false);
-                  setOpenedQuestion(true);
+                  // userHand ? setOpenedQuestion(true) : setOpenedScore(true);
                 }}
                 className="testButton"
                 value="Next Question"
               >
                 Next Question
+              </button>
+            </form>
+          </Container>
+        </Modal>
+        <Modal
+          opened={openedScore}
+          onClose={() => {
+            setOpenedScore(false);
+          }}
+          title="END OF TEST!"
+        >
+          You've reached the end of the test! Your score is A for effort. Test
+          yourself again.
+          <Container>
+            <form>
+              <button
+                type="button"
+                onClick={() => {
+                  setOpenedScore(false);
+                  navigate("/TestFormatPage");
+                }}
+                className="testButton"
+                value="The End"
+              >
+                Test yourself again
               </button>
             </form>
           </Container>
