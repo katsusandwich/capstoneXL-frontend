@@ -20,6 +20,9 @@ const TestFormatPage = () => {
     console.log(`backOfCarduseEffect is ${backOfCard}`);
   }, []);
 
+  //alert box for Mantine Modal
+  const [opened, setOpened] = useState(false);
+
   //is the testing criteria empty?
 
   const [testNoWords, setTestNoWords] = useState(false);
@@ -82,11 +85,7 @@ const TestFormatPage = () => {
 
       const res = await axios.get(path).then((res) => res.data);
       if (JSON.stringify(res) === "[]") {
-        alert(
-          `There are no words in the wordlist selected that fit this testing criteria - please choose a different one.`
-        );
-        setTestNoWords(true);
-        // navigate("/TestFormatPage");
+        setOpened(true);
       }
       console.log(`This is the wordlistToBeTested: ${JSON.stringify(res)}`);
       setWordlistToBeTested(res);
@@ -96,10 +95,6 @@ const TestFormatPage = () => {
           wordlistToBeTested
         )}`
       );
-      setShouldNavigate(true);
-      // setTestNoWords(false);
-
-      // navigate("/TestFormatPage");
     } catch (error) {
       alert(`Unknown error!`);
       console.error(`Error in getting wordistToBeTested`);
@@ -128,6 +123,14 @@ const TestFormatPage = () => {
         <Container className="testFormat">
           Which aspect of a Kanji do you want to test yourself on?
         </Container>
+        <Modal
+          opened={opened}
+          onClose={() => {
+            setOpened(false);
+            setTestNoWords(true);
+          }}
+          title="There are no words in the wordlist selected that fit this testing criteria - please choose a different one."
+        ></Modal>
         <Container>
           <form>
             <select
