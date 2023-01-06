@@ -17,7 +17,6 @@ import { useBackOfCardContext } from "../Context/BackOfCardContext";
 import { useWordlistToBeTestedContext } from "../Context/WordlistToBeTestedContext";
 import {
   TestFunction,
-  // ResultFunction,
   shuffleWordlistToBeTested,
 } from "../Component/TestFunction";
 
@@ -70,20 +69,6 @@ const TestPage = () => {
 
   ///deal a wordcard to the user's hand
   const [userHand, setUserHand] = useState([]);
-
-  //dealWordCardToUser
-
-  // const dealWordCardToUserHand = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     await setUserHand(wordlistToBeTested.pop());
-  //     console.log(userHand);
-
-  //     userHand ? setOpenedQuestion(true) : setOpenedScore(true);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
 
   const dealWordCardToUserHand = async (e) => {
     e.preventDefault();
