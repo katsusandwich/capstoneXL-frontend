@@ -7,6 +7,8 @@ import {
   Modal,
   TextInput,
   Stack,
+  Text,
+  Center,
 } from "@mantine/core";
 import "../CSS/testPage.css";
 import { useNavigate } from "react-router";
@@ -91,7 +93,7 @@ const TestPage = () => {
   //result function
   const resultFunction = (userHand) => {
     if (individualQuestionResult === true) {
-      return `You got it! ${JSON.stringify(userHand)}`;
+      return `You got it! ${userHand.kanji}`;
     } else {
       return `Better luck next time - revise that Kanji! ${JSON.stringify(
         userHand
@@ -116,130 +118,141 @@ const TestPage = () => {
   const backOfCardTranslated = backOfCardTranslator();
 
   return (
-    <Stack
-      align="flex-start"
-      justify="flex-start"
-      sx={() => ({
-        height: 844,
-      })}
-      className="testDiv"
-    >
-      <div>
-        <Container>
-          <Button onClick={() => navigate("/TestFormatPage")}>
-            Choose different test format
-          </Button>
-        </Container>
+    <Center>
+      <Stack
+        align="flex-start"
+        justify="flex-start"
+        sx={() => ({
+          height: 844,
+        })}
+        className="testDiv"
+      >
+        <div>
+          <Container>
+            <Button onClick={() => navigate("/TestFormatPage")}>
+              Choose different test format
+            </Button>
+          </Container>
 
-        <Container className="testHeader" fluid>
-          Test in Progress: {selectedWordlistName} {backOfCard}
-        </Container>
-        <Button
-          onClick={(e) => {
-            dealWordCardToUserHand(e);
-          }}
-        >
-          Draw a Flashcard
-        </Button>
-        <Modal
-          opened={openedQuestion}
-          onClose={() => {
-            setOpenedQuestion(false);
-          }}
-          title="Test your Kanji"
-        >
-          What is the {backOfCardTranslated} of {userHand.kanji}？
-          <Container>
-            <form>
-              <input
-                type="text"
-                value={answerEntered}
-                onChange={(e) => {
-                  console.log(`answerEntered in input is ${e.target.value}`);
-                  setAnswerEntered(e.target.value);
-                }}
-              />
-              <button
-                type="button"
-                onClick={() => {
-                  if (answerEntered === "") {
-                    alert(`Please at least try to answer`);
-                  } else {
-                    TestFunction(answerEntered, userHand, backOfCard);
-                    console.log(
-                      `The result of TestFunction is ${TestFunction(
-                        answerEntered,
-                        userHand,
-                        backOfCard
-                      )}`
-                    );
-                    TestFunction(answerEntered, userHand, backOfCard)
-                      ? setIndividualQuestionResult(true)
-                      : setIndividualQuestionResult(false);
-                    setOpenedResult(true);
-                    setAnswerEntered("");
-                  }
-                }}
-                className="testButton"
-                value="Check answer"
-              >
-                Test your kanji knowledge
-              </button>
-            </form>
+          <Container className="testHeader" fluid>
+            Test in Progress: {selectedWordlistName} {backOfCard}
           </Container>
-        </Modal>
-        <Modal
-          opened={openedResult}
-          onClose={() => {
-            setOpenedResult(false);
-          }}
-          title="Were you right?"
-        >
-          {resultFunction(userHand)}
           <Container>
-            <form>
-              <button
-                type="button"
-                onClick={(e) => {
-                  dealWordCardToUserHand(e);
-                  setOpenedResult(false);
-                  // userHand ? setOpenedQuestion(true) : setOpenedScore(true);
-                }}
-                className="testButton"
-                value="Next Question"
-              >
-                Next Question
-              </button>
-            </form>
+            <Button
+              onClick={(e) => {
+                dealWordCardToUserHand(e);
+              }}
+            >
+              Draw a Flashcard
+            </Button>
           </Container>
-        </Modal>
-        <Modal
-          opened={openedScore}
-          onClose={() => {
-            setOpenedScore(false);
-          }}
-          title="END OF TEST!"
-        >
-          You've reached the end of the test! Your score is A for effort. Test
-          yourself again.
-          <Container>
-            <form>
-              <button
-                type="button"
-                onClick={() => {
-                  setOpenedScore(false);
-                  navigate("/TestFormatPage");
-                }}
-                className="testButton"
-                value="The End"
-              >
-                Test yourself again
-              </button>
-            </form>
-          </Container>
-        </Modal>
-      </div>
-    </Stack>
+          <Modal
+            opened={openedQuestion}
+            onClose={() => {
+              setOpenedQuestion(false);
+            }}
+            title="Test your Kanji"
+          >
+            <Text>
+              What is the {backOfCardTranslated} of
+              <Container>
+                <Text fw={5000} fz="xl" ta="center">
+                  {userHand.kanji}
+                </Text>
+              </Container>
+            </Text>
+            <Container>
+              <form>
+                <input
+                  type="text"
+                  value={answerEntered}
+                  onChange={(e) => {
+                    console.log(`answerEntered in input is ${e.target.value}`);
+                    setAnswerEntered(e.target.value);
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (answerEntered === "") {
+                      alert(`Please at least try to answer`);
+                    } else {
+                      TestFunction(answerEntered, userHand, backOfCard);
+                      console.log(
+                        `The result of TestFunction is ${TestFunction(
+                          answerEntered,
+                          userHand,
+                          backOfCard
+                        )}`
+                      );
+                      TestFunction(answerEntered, userHand, backOfCard)
+                        ? setIndividualQuestionResult(true)
+                        : setIndividualQuestionResult(false);
+                      setOpenedResult(true);
+                      setAnswerEntered("");
+                    }
+                  }}
+                  className="testButton"
+                  value="Check answer"
+                >
+                  Test your kanji knowledge
+                </button>
+              </form>
+            </Container>
+          </Modal>
+          <Modal
+            opened={openedResult}
+            onClose={() => {
+              setOpenedResult(false);
+            }}
+            title="Were you right?"
+          >
+            {resultFunction(userHand)}
+            <Container>
+              <form>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    dealWordCardToUserHand(e);
+                    setOpenedResult(false);
+                    // userHand ? setOpenedQuestion(true) : setOpenedScore(true);
+                  }}
+                  className="testButton"
+                  value="Next Question"
+                >
+                  Next Question
+                </button>
+              </form>
+            </Container>
+          </Modal>
+          <Modal
+            opened={openedScore}
+            onClose={() => {
+              setOpenedScore(false);
+            }}
+            title="END OF TEST!"
+          >
+            You've reached the end of the test! Your score is A for effort. Test
+            yourself again.
+            <Container>
+              <form>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setOpenedScore(false);
+                    navigate("/TestFormatPage");
+                  }}
+                  className="testButton"
+                  value="The End"
+                >
+                  Test yourself again
+                </button>
+              </form>
+            </Container>
+          </Modal>
+        </div>
+      </Stack>
+    </Center>
   );
 };
 
