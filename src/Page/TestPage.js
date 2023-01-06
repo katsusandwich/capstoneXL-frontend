@@ -90,22 +90,13 @@ const TestPage = () => {
     }
   }, [userHand]);
 
-  //result function
-  // const resultFunction = (userHand) => {
-  //   if (individualQuestionResult === true) {
-  //     return `You got it! ${userHand.kanji} meaning: ${userHand.meanings} kun: ${userHand.kunReadings} on: ${userHand.onReadings} name:${userHand.nameReadings}`;
-  //   } else {
-  //     return `Better luck next time - revise that Kanji! ${userHand.kanji} meaning: ${userHand.meanings} kun: ${userHand.kunReadings} on: ${userHand.onReadings} name:${userHand.nameReadings}`;
-  //   }
-  // };
-
   const resultFunction = (userHand) => {
     if (individualQuestionResult === true) {
       return (
         <div>
           <p>You got it!</p>
           <p>
-            <Text fw={5000} fz="xl" ta="center">
+            <Text fw={5000} size="100px" ta="center">
               {userHand.kanji}
             </Text>
             <p>meaning: {userHand.meanings} </p>
@@ -127,7 +118,7 @@ const TestPage = () => {
           <p>Better luck next time - revise that Kanji!</p>
           <p>
             <p>
-              <Text fw={5000} fz="xl" ta="center">
+              <Text fw={5000} size="100px" ta="center">
                 {userHand.kanji}
               </Text>
             </p>
@@ -202,7 +193,7 @@ const TestPage = () => {
             <Text>
               What is the {backOfCardTranslated} of
               <Container>
-                <Text fw={5000} fz="xl" ta="center">
+                <Text fw={5000} size="100px" ta="center">
                   {userHand.kanji}
                 </Text>
               </Container>
