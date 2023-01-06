@@ -15,7 +15,6 @@ import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdConte
 import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameContext";
 import { useBackOfCardContext } from "../Context/BackOfCardContext";
 import { useWordlistToBeTestedContext } from "../Context/WordlistToBeTestedContext";
-// import { useIndividualQuestionResultContext } from "../Context/IndividualQuestionResultContext";
 import {
   TestFunction,
   // ResultFunction,
@@ -113,6 +112,22 @@ const TestPage = () => {
     }
   };
 
+  //function to display backOfCard in a palatable way
+
+  const backOfCardTranslator = () => {
+    if (backOfCard === "kunReadings") {
+      return "kun reading";
+    } else if (backOfCard === "onReadings") {
+      return "on reading";
+    } else if (backOfCard === "nameReadings") {
+      return "name reading";
+    } else if (backOfCard === "meanings") {
+      return "meaning";
+    }
+  };
+
+  const backOfCardTranslated = backOfCardTranslator();
+
   return (
     <Stack
       align="flex-start"
@@ -144,9 +159,9 @@ const TestPage = () => {
           onClose={() => {
             setOpenedQuestion(false);
           }}
-          title="Test thyself"
+          title="Test your Kanji"
         >
-          What is the {backOfCard} of {userHand.kanji}？
+          What is the {backOfCardTranslated} of {userHand.kanji}？
           <Container>
             <form>
               <input
@@ -171,9 +186,6 @@ const TestPage = () => {
                         backOfCard
                       )}`
                     );
-                    // setIndividualQuestionResult(
-                    //   TestFunction(answerEntered, userHand, backOfCard)
-                    // );
                     TestFunction(answerEntered, userHand, backOfCard)
                       ? setIndividualQuestionResult(true)
                       : setIndividualQuestionResult(false);
@@ -184,7 +196,7 @@ const TestPage = () => {
                 className="testButton"
                 value="Check answer"
               >
-                Test thyself
+                Test your kanji knowledge
               </button>
             </form>
           </Container>
@@ -194,7 +206,7 @@ const TestPage = () => {
           onClose={() => {
             setOpenedResult(false);
           }}
-          title="See thine result here"
+          title="Were you right?"
         >
           {resultFunction(userHand)}
           <Container>
