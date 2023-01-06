@@ -74,17 +74,35 @@ const TestPage = () => {
 
   //dealWordCardToUser
 
+  // const dealWordCardToUserHand = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     await setUserHand(wordlistToBeTested.pop());
+  //     console.log(userHand);
+
+  //     userHand ? setOpenedQuestion(true) : setOpenedScore(true);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+
   const dealWordCardToUserHand = async (e) => {
     e.preventDefault();
-    try {
-      await setUserHand(wordlistToBeTested.pop());
+    if (wordlistToBeTested.length > 0) {
+      setUserHand(wordlistToBeTested.pop());
       console.log(userHand);
-
-      userHand ? setOpenedQuestion(true) : setOpenedScore(true);
-    } catch (e) {
-      console.log(e);
-    }
+    } else setUserHand("");
   };
+
+  //useEffect
+
+  useEffect(() => {
+    if (userHand === "") {
+      setOpenedScore(true);
+    } else {
+      setOpenedQuestion(true);
+    }
+  }, [userHand]);
 
   //result function
   const resultFunction = (userHand) => {
