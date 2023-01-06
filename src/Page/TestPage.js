@@ -163,37 +163,6 @@ const TestPage = () => {
             </form>
           </Container>
         </Modal>
-
-        {/* <Container>
-          <form>
-            <input
-              type="text"
-              value={answerEntered}
-              onChange={(e) => {
-                console.log(`answerEntered in input is ${e.target.value}`);
-                setAnswerEntered(e.target.value);
-              }}
-            />
-            <button
-              type="button"
-              onClick={() => {
-                TestFunction(answerEntered, word, backOfCard);
-                console.log(
-                  `The result of TestFunction is ${TestFunction(
-                    answerEntered,
-                    word,
-                    backOfCard
-                  )}`
-                );
-                setAnswerEntered("");
-              }}
-              className="testButton"
-              value="Check answer"
-            >
-              Check answer
-            </button>
-          </form>
-        </Container> */}
       </div>
     </Stack>
   );
