@@ -215,7 +215,25 @@ const ListMakingPage = () => {
         }}
         title="Do you want to add this word?"
       >
-        <Container>{JSON.stringify(wordToBeAdded)}</Container>
+        <Container>
+          <div>
+            <p>
+              <Text fw={5000} size="100px" ta="center">
+                {wordToBeAdded.kanji}
+              </Text>
+              <p>meaning: {wordToBeAdded.meanings} </p>
+              <p>
+                kun:
+                {wordToBeAdded.kun_readings}
+              </p>
+              <p>on: {wordToBeAdded.on_readings} </p>{" "}
+              <p>
+                name:
+                {wordToBeAdded.name_readings}
+              </p>
+            </p>
+          </div>
+        </Container>
         <div>
           <button
             type="button"
