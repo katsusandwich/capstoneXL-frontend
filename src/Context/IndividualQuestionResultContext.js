@@ -5,9 +5,7 @@ const IndividualQuestionResultContext = React.createContext();
 
 // provide context
 function IndividualQuestionResultContextProvider({ children }) {
-  const [individualQuestionResult, setIndividualQuestionResult] = useState(
-    true
-  );
+  const [individualQuestionResult, setIndividualQuestionResult] = useState();
   const value = { individualQuestionResult, setIndividualQuestionResult };
 
   return (
