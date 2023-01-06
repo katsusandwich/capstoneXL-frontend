@@ -93,11 +93,9 @@ const TestPage = () => {
   //result function
   const resultFunction = (userHand) => {
     if (individualQuestionResult === true) {
-      return `You got it! ${userHand.kanji}`;
+      return `You got it! ${userHand.kanji} meaning: ${userHand.meanings} kun: ${userHand.kunReadings} on: ${userHand.onReadings} name:${userHand.nameReadings}`;
     } else {
-      return `Better luck next time - revise that Kanji! ${JSON.stringify(
-        userHand
-      )}`;
+      return `Better luck next time - revise that Kanji! ${userHand.kanji} meaning: ${userHand.meanings} kun: ${userHand.kunReadings} on: ${userHand.onReadings} name:${userHand.nameReadings}`;
     }
   };
 
