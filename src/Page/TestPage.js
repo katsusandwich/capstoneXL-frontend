@@ -45,18 +45,15 @@ const TestPage = () => {
 
   //deal a wordcard to the user's hand
   const [userHand, setUserHand] = useState();
-  // var dealWordCardToUserHand = () => {
-  //   setUserHand(wordlistToBeTested.pop());
-  // };
 
-  const dealWordCardToUserHand = (e) => {
-    e.preventDefault();
-    try {
-      setUserHand(wordlistToBeTested.pop());
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // const dealWordCardToUserHand = (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     setUserHand(wordlistToBeTested.pop());
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
   //display the wordcard to user in a modal
   //wordcard contains the text box to carry out the test function
@@ -64,6 +61,16 @@ const TestPage = () => {
   //click 'next question' and it will display the next word
   //whenwordlisttobetested is empty show the overall score
   //then go back to the main screen
+
+  const dealWordCardToUserHandAndPrint = async (e) => {
+    e.preventDefault();
+    try {
+      await setUserHand(wordlistToBeTested.pop());
+      console.log(userHand);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <Stack
@@ -86,18 +93,20 @@ const TestPage = () => {
         </Container>
         <Button
           onClick={(e) => {
-            dealWordCardToUserHand(e);
+            dealWordCardToUserHandAndPrint(e);
           }}
         >
           Show Card
         </Button>
-        <Button
-          onClick={() => {
-            console.log(userHand);
-          }}
-        >
-          Console log
-        </Button>
+        <Container>
+          {/* <Button
+            onClick={() => {
+              console.log(userHand);
+            }}
+          >
+            Draw a card
+          </Button> */}
+        </Container>
         <Container>
           <form>
             <input
