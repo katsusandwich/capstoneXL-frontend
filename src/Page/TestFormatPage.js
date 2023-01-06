@@ -85,6 +85,7 @@ const TestFormatPage = () => {
 
       const res = await axios.get(path).then((res) => res.data);
       if (JSON.stringify(res) === "[]") {
+        setTestNoWords(true);
         setOpened(true);
       }
       console.log(`This is the wordlistToBeTested: ${JSON.stringify(res)}`);
@@ -95,6 +96,7 @@ const TestFormatPage = () => {
           wordlistToBeTested
         )}`
       );
+      setShouldNavigate(true);
     } catch (error) {
       alert(`Unknown error!`);
       console.error(`Error in getting wordistToBeTested`);
@@ -127,7 +129,7 @@ const TestFormatPage = () => {
           opened={opened}
           onClose={() => {
             setOpened(false);
-            setTestNoWords(true);
+            setTestNoWords(false);
           }}
           title="There are no words in the wordlist selected that fit this testing criteria - please choose a different one."
         ></Modal>
