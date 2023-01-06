@@ -20,6 +20,22 @@ const TestFormatPage = () => {
     console.log(`backOfCarduseEffect is ${backOfCard}`);
   }, []);
 
+  //is the testing criteria empty?
+
+  const [testNoWords, setTestNoWords] = useState(false);
+  const [shouldNavigate, setShouldNavigate] = useState(false);
+
+  useEffect(() => {
+    if (shouldNavigate) {
+      if (testNoWords) {
+        navigate("/TestFormatPage");
+      } else {
+        navigate("/TestPage");
+      }
+      setShouldNavigate(false);
+    }
+  }, [shouldNavigate, testNoWords]);
+
   //bring in contexts
   const {
     selectedWordlistId,
@@ -39,54 +55,55 @@ const TestFormatPage = () => {
   const { backOfCard, setBackOfCard } = useBackOfCardContext();
 
   //button to choose testFormat
-  const submitBackOfCard = () => {
-    console.log(`pressbutton backOfCard is ${backOfCard}`);
+  //async await version of code
 
-    let path = "";
-    switch (backOfCard) {
-      case "meanings":
-        path = `${BACKEND_URL}/words/${selectedWordlistId}`;
-        break;
-      case "kunReadings":
-        path = `${BACKEND_URL}/words/${selectedWordlistId}/kunReadings`;
-        break;
-      case "onReadings":
-        path = `${BACKEND_URL}/words/${selectedWordlistId}/onReadings`;
-        break;
-      case "nameReadings":
-        path = `${BACKEND_URL}/words/${selectedWordlistId}/nameReadings`;
-        break;
-      default:
-        // throw error or default value
-        break;
-    }
+  const submitBackOfCard = async () => {
+    try {
+      console.log(`pressbutton backOfCard is ${backOfCard}`);
 
-    axios
-      .get(path)
-      .then((res) => res.data)
-      .then((res) => {
-        if (JSON.stringify(res) === "[]") {
-          alert(
-            `There are no words in the wordlist selected that fit this testing criteria - please choose a different one.`
-          );
-        }
-        console.log(`This is the wordlistToBeTested: ${JSON.stringify(res)}`);
-        setWordlistToBeTested(res);
-        return wordlistToBeTested;
-      })
-      .then((wordlistToBeTested) => {
-        shuffleWordlistToBeTested(wordlistToBeTested);
-        console.log(
-          `This is the shuffled wordlistToBeTested ${JSON.stringify(
-            wordlistToBeTested
-          )}`
+      let path = "";
+      switch (backOfCard) {
+        case "meanings":
+          path = `${BACKEND_URL}/words/${selectedWordlistId}`;
+          break;
+        case "kunReadings":
+          path = `${BACKEND_URL}/words/${selectedWordlistId}/kunReadings`;
+          break;
+        case "onReadings":
+          path = `${BACKEND_URL}/words/${selectedWordlistId}/onReadings`;
+          break;
+        case "nameReadings":
+          path = `${BACKEND_URL}/words/${selectedWordlistId}/nameReadings`;
+          break;
+        default:
+          // throw error or default value
+          break;
+      }
+
+      const res = await axios.get(path).then((res) => res.data);
+      if (JSON.stringify(res) === "[]") {
+        alert(
+          `There are no words in the wordlist selected that fit this testing criteria - please choose a different one.`
         );
-        return wordlistToBeTested;
-      })
-      .catch((error) => {
-        alert(`Unknown error!`);
-        console.error(`Error in getting wordistToBeTested`);
-      });
+        setTestNoWords(true);
+        // navigate("/TestFormatPage");
+      }
+      console.log(`This is the wordlistToBeTested: ${JSON.stringify(res)}`);
+      setWordlistToBeTested(res);
+      const wordlistToBeTested = await shuffleWordlistToBeTested(res);
+      console.log(
+        `This is the shuffled wordlistToBeTested ${JSON.stringify(
+          wordlistToBeTested
+        )}`
+      );
+      setShouldNavigate(true);
+      // setTestNoWords(false);
+
+      // navigate("/TestFormatPage");
+    } catch (error) {
+      alert(`Unknown error!`);
+      console.error(`Error in getting wordistToBeTested`);
+    }
   };
 
   return (
@@ -126,20 +143,12 @@ const TestFormatPage = () => {
               <option value="nameReadings">Name Reading</option>
               <option value="meanings">Meaning</option>
             </select>
-            {/* <button
-              type="button"
-              onClick={submitBackOfCard}
-              className="testButton"
-            >
-              Choose Kanji Aspect
-            </button> */}
           </form>
         </Container>
         <Container>
           <Button
             onClick={() => {
               submitBackOfCard();
-              navigate("/TestPage");
             }}
           >
             Test yourself on Wordlist: {selectedWordlistName}

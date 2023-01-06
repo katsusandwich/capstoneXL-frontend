@@ -43,17 +43,8 @@ const TestPage = () => {
   //text input box
   const [answerEntered, setAnswerEntered] = useState("");
 
-  //deal a wordcard to the user's hand
+  ///deal a wordcard to the user's hand
   const [userHand, setUserHand] = useState();
-
-  // const dealWordCardToUserHand = (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     setUserHand(wordlistToBeTested.pop());
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
 
   //display the wordcard to user in a modal
   //wordcard contains the text box to carry out the test function
@@ -96,17 +87,8 @@ const TestPage = () => {
             dealWordCardToUserHandAndPrint(e);
           }}
         >
-          Show Card
+          Draw a Flashcard
         </Button>
-        <Container>
-          {/* <Button
-            onClick={() => {
-              console.log(userHand);
-            }}
-          >
-            Draw a card
-          </Button> */}
-        </Container>
         <Container>
           <form>
             <input
