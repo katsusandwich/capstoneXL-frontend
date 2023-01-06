@@ -108,7 +108,9 @@ const TestPage = () => {
     if (individualQuestionResult === true) {
       return `You got it! ${JSON.stringify(userHand)}`;
     } else {
-      return `Gotta revise that Kanji! ${JSON.stringify(userHand)}`;
+      return `Better luck next time - revise that Kanji! ${JSON.stringify(
+        userHand
+      )}`;
     }
   };
 
