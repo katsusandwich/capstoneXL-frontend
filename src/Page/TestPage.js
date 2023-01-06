@@ -15,7 +15,6 @@ import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdConte
 import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameContext";
 import { useBackOfCardContext } from "../Context/BackOfCardContext";
 import { useWordlistToBeTestedContext } from "../Context/WordlistToBeTestedContext";
-
 import {
   TestFunction,
   shuffleWordlistToBeTested,

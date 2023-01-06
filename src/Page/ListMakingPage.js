@@ -22,6 +22,8 @@ const ListMakingPage = () => {
 
   //get wordlists info for names to display in dropdown box
   const [wordlists, setWordlists] = useState([]);
+
+  //get wordlistsUseEffect
   useEffect(() => {
     axios
       .get(`${BACKEND_URL}/wordlists/${userId}`)
