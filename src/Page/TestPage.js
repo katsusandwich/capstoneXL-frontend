@@ -23,6 +23,9 @@ import {
 const TestPage = () => {
   let navigate = useNavigate();
 
+  //alert box for Mantine Modal
+  const [opened, setOpened] = useState(false);
+
   const {
     selectedWordlistId,
     setSelectedWordlistId,
@@ -44,7 +47,7 @@ const TestPage = () => {
   const [answerEntered, setAnswerEntered] = useState("");
 
   ///deal a wordcard to the user's hand
-  const [userHand, setUserHand] = useState();
+  const [userHand, setUserHand] = useState([]);
 
   //display the wordcard to user in a modal
   //wordcard contains the text box to carry out the test function
@@ -57,6 +60,7 @@ const TestPage = () => {
     e.preventDefault();
     try {
       await setUserHand(wordlistToBeTested.pop());
+      setOpened(true);
       console.log(userHand);
     } catch (e) {
       console.log(e);
@@ -89,6 +93,16 @@ const TestPage = () => {
         >
           Draw a Flashcard
         </Button>
+        <Modal
+          opened={opened}
+          onClose={() => {
+            setOpened(false);
+          }}
+          title="Test thyself"
+        >
+          {userHand.kanji}
+        </Modal>
+
         <Container>
           <form>
             <input
