@@ -17,15 +17,23 @@ import { useBackOfCardContext } from "../Context/BackOfCardContext";
 import { useWordlistToBeTestedContext } from "../Context/WordlistToBeTestedContext";
 import {
   TestFunction,
+  ResultFunction,
   shuffleWordlistToBeTested,
 } from "../Component/TestFunction";
 
 const TestPage = () => {
   let navigate = useNavigate();
 
-  //alert box for Mantine Modal
-  const [opened, setOpened] = useState(false);
+  //alert box for Mantine Modal for question
+  const [openedQuestion, setOpenedQuestion] = useState(false);
 
+  //alert box for Mantine Modal for result
+  const [openedResult, setOpenedResult] = useState(false);
+
+  //alert box for Mantine Modal for score
+  const [openedScore, setOpenedScore] = useState(false);
+
+  //get contexts
   const {
     selectedWordlistId,
     setSelectedWordlistId,
@@ -49,18 +57,13 @@ const TestPage = () => {
   ///deal a wordcard to the user's hand
   const [userHand, setUserHand] = useState([]);
 
-  //display the wordcard to user in a modal
-  //wordcard contains the text box to carry out the test function
-  //user does test and it will show the result for that particular word based on whether it's true or false
-  //click 'next question' and it will display the next word
-  //whenwordlisttobetested is empty show the overall score
-  //then go back to the main screen
+  //dealWordCardToUser
 
-  const dealWordCardToUserHandAndPrint = async (e) => {
+  const dealWordCardToUserHand = async (e) => {
     e.preventDefault();
     try {
       await setUserHand(wordlistToBeTested.pop());
-      setOpened(true);
+      setOpenedQuestion(true);
       console.log(userHand);
     } catch (e) {
       console.log(e);
@@ -88,15 +91,15 @@ const TestPage = () => {
         </Container>
         <Button
           onClick={(e) => {
-            dealWordCardToUserHandAndPrint(e);
+            dealWordCardToUserHand(e);
           }}
         >
           Draw a Flashcard
         </Button>
         <Modal
-          opened={opened}
+          opened={openedQuestion}
           onClose={() => {
-            setOpened(false);
+            setOpenedQuestion(false);
           }}
           title="Test thyself"
         >
@@ -114,7 +117,9 @@ const TestPage = () => {
               <button
                 type="button"
                 onClick={() => {
-                  TestFunction(answerEntered, userHand, backOfCard);
+                  answerEntered === ""
+                    ? alert(`Please at least try to answer`)
+                    : TestFunction(answerEntered, userHand, backOfCard);
                   console.log(
                     `The result of TestFunction is ${TestFunction(
                       answerEntered,
@@ -122,12 +127,34 @@ const TestPage = () => {
                       backOfCard
                     )}`
                   );
+                  setOpenedResult(true);
                   setAnswerEntered("");
                 }}
                 className="testButton"
                 value="Check answer"
               >
-                Check answer
+                Test thyself
+              </button>
+            </form>
+          </Container>
+        </Modal>
+        <Modal
+          opened={openedResult}
+          onClose={() => {
+            setOpenedResult(false);
+          }}
+          title="See thine result here"
+        >
+          {ResultFunction(TestFunction, userHand, backOfCard)}
+          <Container>
+            <form>
+              <button
+                type="button"
+                onClick={dealWordCardToUserHand}
+                className="testButton"
+                value="Next Question"
+              >
+                Next Question
               </button>
             </form>
           </Container>

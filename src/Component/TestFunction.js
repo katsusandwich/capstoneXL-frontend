@@ -19,6 +19,14 @@ export const TestFunction = (answerEntered, word, backOfCard) => {
   }
 };
 
+export const ResultFunction = (TestFunction, userHand, backOfCard) => {
+  if (TestFunction === true) {
+    return `You got it! ${userHand.kanji} ${userHand.backOfCard}`;
+  } else {
+    return `Gotta revise that Kanji! ${userHand.kanji} ${userHand.backOfCard}`;
+  }
+};
+
 export var shuffleWordlistToBeTested = function(wordlistToBeTested) {
   const getRandomIndex = function(size) {
     return Math.floor(Math.random() * size);
