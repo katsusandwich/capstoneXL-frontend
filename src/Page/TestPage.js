@@ -88,7 +88,7 @@ const TestPage = () => {
   //result function
   const resultFunction = (userHand) => {
     if (individualQuestionResult === true) {
-      return `You got it! ${userHand.kanji} ${userHand.meanings} ${userHand.kunReadings} ${userHand.onReadings}  ${userHand.nameReadings}`;
+      return `You got it! ${JSON.stringify(userHand)}`;
     } else {
       return `Gotta revise that Kanji! ${userHand.kanji} ${userHand.meanings}`;
     }
@@ -175,7 +175,7 @@ const TestPage = () => {
           }}
           title="See thine result here"
         >
-          {resultFunction(TestFunction, userHand)}
+          {resultFunction(userHand)}
           <Container>
             <form>
               <button
