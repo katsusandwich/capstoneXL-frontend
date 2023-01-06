@@ -90,7 +90,7 @@ const TestPage = () => {
     if (individualQuestionResult === true) {
       return `You got it! ${JSON.stringify(userHand)}`;
     } else {
-      return `Gotta revise that Kanji! ${userHand.kanji} ${userHand.meanings}`;
+      return `Gotta revise that Kanji! ${JSON.stringify(userHand)}`;
     }
   };
 
