@@ -52,7 +52,7 @@ const Header = () => {
             aria-controls={open ? "basic-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
-            onClick={() => navigate("/UserPage")}
+            onClick={() => navigate("/listmakingpage")}
           />
           {/* <Menu
             id="basic-menu"

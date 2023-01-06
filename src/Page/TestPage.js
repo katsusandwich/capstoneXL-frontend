@@ -89,7 +89,7 @@ const TestPage = () => {
   const dealWordCardToUserHand = async (e) => {
     e.preventDefault();
     if (wordlistToBeTested.length > 0) {
-      setUserHand(wordlistToBeTested.pop());
+      await setUserHand(wordlistToBeTested.pop());
       console.log(userHand);
     } else setUserHand("");
   };
