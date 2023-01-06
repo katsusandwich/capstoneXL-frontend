@@ -63,8 +63,8 @@ const TestPage = () => {
     e.preventDefault();
     try {
       await setUserHand(wordlistToBeTested.pop());
-      setOpenedQuestion(true);
       console.log(userHand);
+      setOpenedQuestion(true);
     } catch (e) {
       console.log(e);
     }
@@ -150,7 +150,11 @@ const TestPage = () => {
             <form>
               <button
                 type="button"
-                onClick={dealWordCardToUserHand}
+                onClick={(e) => {
+                  dealWordCardToUserHand(e);
+                  setOpenedResult(false);
+                  setOpenedQuestion(true);
+                }}
                 className="testButton"
                 value="Next Question"
               >
