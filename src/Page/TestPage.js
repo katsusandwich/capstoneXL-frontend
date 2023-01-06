@@ -91,11 +91,59 @@ const TestPage = () => {
   }, [userHand]);
 
   //result function
+  // const resultFunction = (userHand) => {
+  //   if (individualQuestionResult === true) {
+  //     return `You got it! ${userHand.kanji} meaning: ${userHand.meanings} kun: ${userHand.kunReadings} on: ${userHand.onReadings} name:${userHand.nameReadings}`;
+  //   } else {
+  //     return `Better luck next time - revise that Kanji! ${userHand.kanji} meaning: ${userHand.meanings} kun: ${userHand.kunReadings} on: ${userHand.onReadings} name:${userHand.nameReadings}`;
+  //   }
+  // };
+
   const resultFunction = (userHand) => {
     if (individualQuestionResult === true) {
-      return `You got it! ${userHand.kanji} meaning: ${userHand.meanings} kun: ${userHand.kunReadings} on: ${userHand.onReadings} name:${userHand.nameReadings}`;
+      return (
+        <div>
+          <p>You got it!</p>
+          <p>
+            <Text fw={5000} fz="xl" ta="center">
+              {userHand.kanji}
+            </Text>
+            <p>meaning: {userHand.meanings} </p>
+            <p>
+              kun:
+              {userHand.kunReadings}
+            </p>
+            <p>on: {userHand.onReadings} </p>{" "}
+            <p>
+              name:
+              {userHand.nameReadings}
+            </p>
+          </p>
+        </div>
+      );
     } else {
-      return `Better luck next time - revise that Kanji! ${userHand.kanji} meaning: ${userHand.meanings} kun: ${userHand.kunReadings} on: ${userHand.onReadings} name:${userHand.nameReadings}`;
+      return (
+        <div>
+          <p>Better luck next time - revise that Kanji!</p>
+          <p>
+            <p>
+              <Text fw={5000} fz="xl" ta="center">
+                {userHand.kanji}
+              </Text>
+            </p>
+            <p>meaning: {userHand.meanings} </p>
+            <p>
+              kun:
+              {userHand.kunReadings}
+            </p>
+            <p>on: {userHand.onReadings} </p>{" "}
+            <p>
+              name:
+              {userHand.nameReadings}
+            </p>
+          </p>
+        </div>
+      );
     }
   };
 
