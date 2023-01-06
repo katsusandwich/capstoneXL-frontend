@@ -10,18 +10,17 @@ import {
 } from "@mantine/core";
 import "../CSS/testPage.css";
 import { useNavigate } from "react-router";
-import { BACKEND_URL, word } from "../constants";
+import { BACKEND_URL } from "../constants";
 import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdContext";
 import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameContext";
 import { useBackOfCardContext } from "../Context/BackOfCardContext";
 import { useWordlistToBeTestedContext } from "../Context/WordlistToBeTestedContext";
-import { IndividualQuestionResultContextProvider } from "./Context/IndividualQuestionResultContext";
+// import { useIndividualQuestionResultContext } from "../Context/IndividualQuestionResultContext";
 import {
   TestFunction,
-  ResultFunction,
+  // ResultFunction,
   shuffleWordlistToBeTested,
 } from "../Component/TestFunction";
-import { useIndividualQuestionResultContext } from "../Context/IndividualQuestionResultContext";
 
 const TestPage = () => {
   let navigate = useNavigate();
@@ -53,10 +52,19 @@ const TestPage = () => {
     setWordlistToBeTested,
   } = useWordlistToBeTestedContext();
 
-  const {
-    individualQuestionResult,
-    setIndividualQuestionResult,
-  } = useIndividualQuestionResultContext();
+  //individualQuestionResult code
+
+  const [individualQuestionResult, setIndividualQuestionResult] = useState();
+
+  // const {
+  //   individualQuestionResult,
+  //   setIndividualQuestionResult,
+  // } = useIndividualQuestionResultContext();
+
+  // //set default result
+  // useEffect(() => {
+  //   setIndividualQuestionResult(true);
+  // }, []);
 
   //text input box
   const [answerEntered, setAnswerEntered] = useState("");
@@ -74,6 +82,15 @@ const TestPage = () => {
       setOpenedQuestion(true);
     } catch (e) {
       console.log(e);
+    }
+  };
+
+  //result function
+  const resultFunction = (userHand) => {
+    if (individualQuestionResult === true) {
+      return `You got it! ${userHand.kanji} ${userHand.meanings} ${userHand.kunReadings} ${userHand.onReadings}  ${userHand.nameReadings}`;
+    } else {
+      return `Gotta revise that Kanji! ${userHand.kanji} ${userHand.meanings}`;
     }
   };
 
@@ -134,6 +151,12 @@ const TestPage = () => {
                       backOfCard
                     )}`
                   );
+                  // setIndividualQuestionResult(
+                  //   TestFunction(answerEntered, userHand, backOfCard)
+                  // );
+                  TestFunction(answerEntered, userHand, backOfCard)
+                    ? setIndividualQuestionResult(true)
+                    : setIndividualQuestionResult(false);
                   setOpenedResult(true);
                   setAnswerEntered("");
                 }}
@@ -152,7 +175,7 @@ const TestPage = () => {
           }}
           title="See thine result here"
         >
-          {ResultFunction(TestFunction, userHand, backOfCard)}
+          {resultFunction(TestFunction, userHand)}
           <Container>
             <form>
               <button

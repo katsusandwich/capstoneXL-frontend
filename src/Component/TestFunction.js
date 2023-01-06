@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // import axios from "axios";
 import { Container, Table } from "@mantine/core";
 import "../CSS/listMakingPage.css";
@@ -6,26 +6,34 @@ import "../CSS/listMakingPage.css";
 // import { BACKEND_URL, word, backOfCard } from "../constants";
 // import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdContext";
 // import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameContext";
+import { useIndividualQuestionResultContext } from "../Context/IndividualQuestionResultContext";
 
 export const TestFunction = (answerEntered, word, backOfCard) => {
-  // //testing function that does not take in backOfCard
+  // const {
+  //   individualQuestionResult,
+  //   setIndividualQuestionResult,
+  // } = useIndividualQuestionResultContext();
+
   //   // Check if the value of the key is an array
+
   if (Array.isArray(word[backOfCard])) {
     // Return true if the search string is a full and complete match for any element in the array
+    // setIndividualQuestionResult(true);
     return word[backOfCard].some((val) => val === answerEntered);
   } else {
-    //     // Return true if the search string is a full and complete match for the value of the key
+    // Return true if the search string is a full and complete match for the value of the key
+    // setIndividualQuestionResult(false);
     return answerEntered === word[backOfCard];
   }
 };
 
-export const ResultFunction = (TestFunction, userHand, backOfCard) => {
-  if (TestFunction === true) {
-    return `You got it! ${userHand.kanji} ${userHand.backOfCard}`;
-  } else {
-    return `Gotta revise that Kanji! ${userHand.kanji} ${userHand.backOfCard}`;
-  }
-};
+// export const ResultFunction = (individualQuestionResult, userHand) => {
+//   if (individualQuestionResult === true) {
+//     return `You got it! ${userHand.kanji} ${userHand.meanings} ${userHand.kunReadings} ${userHand.onReadings}  ${userHand.nameReadings}`;
+//   } else {
+//     return `Gotta revise that Kanji! ${userHand.kanji} ${userHand.backOfCard}`;
+//   }
+// };
 
 export var shuffleWordlistToBeTested = function(wordlistToBeTested) {
   const getRandomIndex = function(size) {
