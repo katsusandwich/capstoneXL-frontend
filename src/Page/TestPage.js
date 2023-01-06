@@ -114,11 +114,11 @@ const TestPage = () => {
               <button
                 type="button"
                 onClick={() => {
-                  TestFunction(answerEntered, word, backOfCard);
+                  TestFunction(answerEntered, userHand, backOfCard);
                   console.log(
                     `The result of TestFunction is ${TestFunction(
                       answerEntered,
-                      word,
+                      userHand,
                       backOfCard
                     )}`
                   );
