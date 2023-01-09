@@ -5,7 +5,7 @@ import NavBar from "./NavBar";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import axios from "axios";
-// import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 // import Button from "@mui/material/Button";
 import { Container, Grid, Menu, Button, Text } from "@mantine/core";
 import MenuItem from "@mui/material/MenuItem";
@@ -20,7 +20,7 @@ const Header = () => {
   let navigate = useNavigate();
 
   // user
-  // const { user, getAccessTokenSilently } = useAuth0();
+  const { user, getAccessTokenSilently, logout } = useAuth0();
   // const [isRegistering, setRegistering] = useState(false);
 
   // const [anchorEl, setAnchorEl] = useState(null);
@@ -45,10 +45,18 @@ const Header = () => {
               <PersonOutlineOutlinedIcon id="basic-icon" />
             </Menu.Target>
             <Menu.Dropdown>
+              <Menu.Item onClick={() => navigate("/userpage")}>
+                User Page
+              </Menu.Item>
+
               <Menu.Item onClick={() => navigate("/listmakingpage")}>
                 My lists
               </Menu.Item>
-              <Menu.Item>Logout</Menu.Item>
+              <Menu.Item
+                onClick={() => logout({ returnTo: window.location.origin })}
+              >
+                Logout
+              </Menu.Item>
             </Menu.Dropdown>
           </Menu>
           {/* <Menu

@@ -10,10 +10,8 @@ import ListNamingPage from "./Page/ListNamingPage";
 import ListMakingPage from "./Page/ListMakingPage";
 import TestFormatPage from "./Page/TestFormatPage";
 import TestPage from "./Page/TestPage";
-import RightPage from "./Page/RightPage";
-import WrongPage from "./Page/WrongPage";
-import TestScorePage from "./Page/TestScorePage";
 import DummyAPICall from "./Component/DummyAPICall";
+require("dotenv").config();
 
 class App extends React.Component {
   render() {
@@ -29,9 +27,6 @@ class App extends React.Component {
             <Route path="ListMakingPage" element={<ListMakingPage />} />
             <Route path="TestFormatPage" element={<TestFormatPage />} />
             <Route path="TestPage" element={<TestPage />} />
-            <Route path="RightPage" element={<RightPage />} />
-            <Route path="WrongPage" element={<WrongPage />} />
-            <Route path="TestScorePage" element={<TestScorePage />} />
             <Route path="*" element={"Nothing here!"} />
           </Route>
         </Routes>
