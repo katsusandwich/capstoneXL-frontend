@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
-import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+// import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import axios from "axios";
 // import { useAuth0 } from "@auth0/auth0-react";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
+// import Button from "@mui/material/Button";
+import { Container, Grid, Menu, Button, Text } from "@mantine/core";
 import MenuItem from "@mui/material/MenuItem";
 import "../CSS/Header.css";
 import Logout from "./Logout";
@@ -23,35 +23,25 @@ const Header = () => {
   // const { user, getAccessTokenSilently } = useAuth0();
   // const [isRegistering, setRegistering] = useState(false);
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (e) => {
-    setAnchorEl(e.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // const [anchorEl, setAnchorEl] = useState(null);
+  // const open = Boolean(anchorEl);
+  // const handleClick = (e) => {
+  //   setAnchorEl(e.currentTarget);
+  // };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
 
   return (
     <div>
-      <Grid2 container columnSpacing={0} rowSpacing={0} className="header">
-        <Grid2>
-          <HomeIcon
-            id="basic-icon"
-            style={{ marginLeft: "300px" }}
-            aria-controls={open ? "basic-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={() => navigate("/Home")}
-          />
-        </Grid2>
-        <Grid2>
+      <Grid className="header" columns={24}>
+        <Grid.Col span={19}></Grid.Col>
+        <Grid.Col span={2}>
+          <HomeIcon onClick={() => navigate("/")} />
+        </Grid.Col>
+        <Grid.Col span={2}>
           <PersonOutlineOutlinedIcon
             id="basic-icon"
-            style={{ marginLeft: "20px" }}
-            aria-controls={open ? "basic-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
             onClick={() => navigate("/listmakingpage")}
           />
           {/* <Menu
@@ -76,9 +66,10 @@ const Header = () => {
 
           {/* <MenuItem>{user ? <Logout /> : <Login />}</MenuItem> */}
           {/* </Menu> */}
-        </Grid2>
-        <Grid2 xs={0.5}></Grid2>
-      </Grid2>
+        </Grid.Col>
+        <Grid></Grid>
+        <Grid xs={0.5}></Grid>
+      </Grid>
       <Outlet />
     </div>
   );
