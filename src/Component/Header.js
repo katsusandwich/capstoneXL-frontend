@@ -40,10 +40,17 @@ const Header = () => {
           <HomeIcon onClick={() => navigate("/")} />
         </Grid.Col>
         <Grid.Col span={2}>
-          <PersonOutlineOutlinedIcon
-            id="basic-icon"
-            onClick={() => navigate("/listmakingpage")}
-          />
+          <Menu>
+            <Menu.Target>
+              <PersonOutlineOutlinedIcon id="basic-icon" />
+            </Menu.Target>
+            <Menu.Dropdown>
+              <Menu.Item onClick={() => navigate("/listmakingpage")}>
+                My lists
+              </Menu.Item>
+              <Menu.Item>Logout</Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
           {/* <Menu
             id="basic-menu"
             anchorEl={anchorEl}
