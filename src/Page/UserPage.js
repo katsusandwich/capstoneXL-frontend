@@ -10,7 +10,7 @@ import {
   Text,
   Center,
 } from "@mantine/core";
-import "../CSS/testPage.css";
+import "../CSS/userPage.css";
 import { useNavigate } from "react-router";
 import { BACKEND_URL } from "../constants";
 
@@ -25,9 +25,11 @@ const UserPage = () => {
         sx={() => ({
           height: 844,
         })}
-        className="testDiv"
+        className="userPageDiv"
       >
-        <Container>User info!</Container>
+        <Container>
+          <Text className="userPageHeader">User info!</Text>
+        </Container>
       </Stack>
     </Center>
   );

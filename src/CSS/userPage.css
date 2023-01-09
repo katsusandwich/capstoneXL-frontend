@@ -1,0 +1,54 @@
+.userPageDiv {
+  background-image: url("https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80");
+  /* background-repeat: repeat-y; */
+  /* background-position-x: -10px; */
+  /* background-position-y: top; */
+  background-size: 68vh;
+  /* height: 95vh; */
+  color: black;
+  /* position: absolute; */
+  width: 100%;
+  left: 0px;
+}
+
+.userPageHeader {
+  background-color: rgba(255, 255, 255, 0.5);
+  /* background-repeat: repeat-y; */
+  font-size: 6vw;
+  color: black;
+  width: 100%;
+  /* margin: 0;
+  /* position: top; */
+  top: 10%;
+  /* -ms-transform: translateY(-90%);
+  transform: translateY(-20%); */
+}
+
+.testFormat {
+  background-color: rgba(255, 255, 255, 0.5);
+  /* background-repeat: repeat-y; */
+  font-size: 6vw;
+  /* color: white; */
+  width: 100%;
+  /* margin: 0;
+  /* position: top; */
+  top: 10%;
+  /* -ms-transform: translateY(-90%);
+  transform: translateY(-20%); */
+}
+
+.testTable {
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+
+  /* position: absolute; */
+  /* align-content: center;
+  table-layout: "fixed";
+  width: "100px";
+  max-width: "100%";
+  padding: "10px"; */
+}
+
+.testButton {
+  font-size: 3vw;
+}
