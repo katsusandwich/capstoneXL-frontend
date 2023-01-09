@@ -19,6 +19,10 @@ const UserPage = () => {
   let navigate = useNavigate();
   const { user, isAuthenticated, isLoading } = useAuth0();
 
+  useEffect(() => {
+    console.log(`User is ${JSON.stringify(user)}`);
+  }, []);
+
   if (isLoading) {
     return <div className="userPageHeader">Loading ...</div>;
   }
@@ -37,12 +41,7 @@ const UserPage = () => {
           <Text className="userPageHeader">User info!</Text>
         </Container>
         <Container className="userPageHeader">
-          isAuthenticated && (
-          <div>
-            <h2>{user.name}</h2>
-            <p>{user.email}</p>
-          </div>
-          )
+          <Text>{isAuthenticated && user ? user.email : "No user found"}</Text>
         </Container>
       </Stack>
     </Center>
