@@ -149,7 +149,7 @@ const ListMakingPage = () => {
       // const getAccessToken = await getAccessTokenSilently();
       await axios({
         method: "post",
-        // url: `${BACKEND_URL}/words`,
+        url: `${BACKEND_URL}/words`,
         // headers: {
         //   Authorization: `Bearer ${getAccessToken}`,
         // },
