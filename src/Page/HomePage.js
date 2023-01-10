@@ -10,8 +10,8 @@ const Home = () => {
   const {
     user,
     loginWithRedirect,
-    // getAccessTokenSilently,
-    // isAuthenticated,
+    getAccessTokenSilently,
+    isAuthenticated,
   } = useAuth0();
 
   return (

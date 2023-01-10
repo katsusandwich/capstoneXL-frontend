@@ -15,6 +15,7 @@ import { BACKEND_URL } from "../constants";
 import WordTable from "../Component/WordTable";
 import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdContext";
 import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameContext";
+import { useUserContext } from "../Context/UserContext";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginRedirectPage from "./LoginRedirectPage";
 
@@ -31,7 +32,20 @@ const ListMakingPage = () => {
   } = useAuth0();
 
   //userId constant
-  const userId = "333";
+  // const userId = "333";
+
+  //context for userId etc
+  const {
+    userObject,
+    setUserObject,
+    userId,
+    setUserId,
+    // userAccessToken,
+    // setUserAccessToken,
+  } = useUserContext();
+
+  //get access token
+  const accessToken = getAccessTokenSilently();
 
   // handle wordlist selection by user
   const {
@@ -45,7 +59,11 @@ const ListMakingPage = () => {
   //get wordlistsUseEffect
   useEffect(() => {
     axios
-      .get(`${BACKEND_URL}/wordlists/${userId}`)
+      .get(`${BACKEND_URL}/wordlists/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
       .then((res) => res.data)
       .then((res) => {
         console.log(res);
@@ -73,7 +91,12 @@ const ListMakingPage = () => {
         console.log(`This is res of submitWordListId ${res}`);
         setWords(res);
         return axios.get(
-          `${BACKEND_URL}/wordlists/${userId}/${selectedWordlistId}`
+          `${BACKEND_URL}/wordlists/${userId}/${selectedWordlistId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
         );
       })
       .then((res) => res.data)
@@ -126,13 +149,12 @@ const ListMakingPage = () => {
       // const getAccessToken = await getAccessTokenSilently();
       await axios({
         method: "post",
-        url: `${BACKEND_URL}/words`,
+        // url: `${BACKEND_URL}/words`,
         // headers: {
         //   Authorization: `Bearer ${getAccessToken}`,
         // },
         data: {
           wordlistId: selectedWordlistId,
-          // userId: user.sub,
           userId: userId,
           kanji: wordToBeAdded.kanji,
           meanings: wordToBeAdded.meanings,
