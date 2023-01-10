@@ -15,9 +15,20 @@ import { BACKEND_URL } from "../constants";
 import WordTable from "../Component/WordTable";
 import { useSelectedWordlistIdContext } from "../Context/SelectedWordlistIdContext";
 import { useSelectedWordlistNameContext } from "../Context/SelectedWordlistNameContext";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginRedirectPage from "./LoginRedirectPage";
 
 const ListMakingPage = () => {
   let navigate = useNavigate();
+
+  //auth0 methods
+  const {
+    user,
+    getAccessTokenSilently,
+    isAuthenticated,
+    isLoading,
+    loginWithRedirect,
+  } = useAuth0();
 
   //userId constant
   const userId = "333";
@@ -142,7 +153,7 @@ const ListMakingPage = () => {
     }
   };
 
-  return (
+  return isAuthenticated ? (
     <Stack
       align="flex-start"
       justify="flex-start"
@@ -266,6 +277,8 @@ const ListMakingPage = () => {
         <Center>{WordTable(words)}</Center>
       </Container>
     </Stack>
+  ) : (
+    <LoginRedirectPage />
   );
 };
 

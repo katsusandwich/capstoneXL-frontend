@@ -9,6 +9,7 @@ import { SelectedWordlistNameContextProvider } from "./Context/SelectedWordlistN
 import { WordlistToBeTestedContextProvider } from "./Context/WordlistToBeTestedContext";
 import { BackOfCardContextProvider } from "./Context/BackOfCardContext";
 import { IndividualQuestionResultContextProvider } from "./Context/IndividualQuestionResultContext";
+import { UserContextProvider } from "./Context/UserContext";
 require("dotenv").config();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -18,20 +19,22 @@ root.render(
     clientId={process.env.REACT_APP_AUTH0CLIENTID}
     redirectUri={window.location.origin}
     audience={process.env.REACT_APP_AUTH0AUDIENCE}
-    // scope="read:current_user update:current_user_metadata"
+    scope="read:current_user update:current_user_metadata"
   >
     <BrowserRouter>
-      <BackOfCardContextProvider>
-        <SelectedWordlistNameContextProvider>
-          <SelectedWordlistIdContextProvider>
-            <WordlistToBeTestedContextProvider>
-              <IndividualQuestionResultContextProvider>
-                <App />
-              </IndividualQuestionResultContextProvider>
-            </WordlistToBeTestedContextProvider>
-          </SelectedWordlistIdContextProvider>
-        </SelectedWordlistNameContextProvider>
-      </BackOfCardContextProvider>
+      <UserContextProvider>
+        <BackOfCardContextProvider>
+          <SelectedWordlistNameContextProvider>
+            <SelectedWordlistIdContextProvider>
+              <WordlistToBeTestedContextProvider>
+                <IndividualQuestionResultContextProvider>
+                  <App />
+                </IndividualQuestionResultContextProvider>
+              </WordlistToBeTestedContextProvider>
+            </SelectedWordlistIdContextProvider>
+          </SelectedWordlistNameContextProvider>
+        </BackOfCardContextProvider>
+      </UserContextProvider>
     </BrowserRouter>
   </Auth0Provider>
 );

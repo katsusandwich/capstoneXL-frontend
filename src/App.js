@@ -4,7 +4,7 @@ import "./App.css";
 import logo from "./logo.png";
 import Home from "./Page/HomePage";
 import Header from "./Component/Header";
-import LoginPage from "./Page/LoginPage";
+import LoginRedirectPage from "./Page/LoginRedirectPage";
 import UserPage from "./Page/UserPage";
 import ListNamingPage from "./Page/ListNamingPage";
 import ListMakingPage from "./Page/ListMakingPage";
@@ -21,7 +21,7 @@ class App extends React.Component {
           <Route path="/" element={<Header />}>
             <Route path="" element={<Home />} />
             <Route path="Home" element={<Home />} />
-            <Route path="LoginPage" element={<LoginPage />} />
+            <Route path="LoginRedirectPage" element={<LoginRedirectPage />} />
             <Route path="UserPage" element={<UserPage />} />
             <Route path="ListNamingPage" element={<ListNamingPage />} />
             <Route path="ListMakingPage" element={<ListMakingPage />} />

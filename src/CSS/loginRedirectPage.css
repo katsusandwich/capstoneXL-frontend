@@ -1,0 +1,59 @@
+.loginRedirectDiv {
+  background-image: url("https://images.unsplash.com/photo-1522850403397-b0c8f2f75451?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80");
+  background-repeat: repeat-x;
+  background-position-x: -50px;
+  background-position-y: top;
+  background-size: 100vh;
+  height: 95vh;
+  color: white;
+  position: relative;
+  width: 100%;
+  left: 0px;
+}
+
+.loginRedirectHeader {
+  background-color: rgba(255, 255, 255, 0.5);
+  /* background-repeat: repeat-y; */
+  font-size: 6vw;
+  color: black;
+  width: 100%;
+  /* margin: 0;
+  /* position: top; */
+  /* top: 10%; */
+  /* -ms-transform: translateY(-90%);
+  transform: translateY(-20%); */
+}
+
+.loginRedirectButton {
+  background-color: white;
+  opacity: 50%;
+  margin: 0;
+  width: 100%;
+  position: absolute;
+  top: 85%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+/* .logo-container {
+  text-align: center;
+  position: relative;
+  top: 70vh;
+  height: 5vh;
+} */
+
+.brand {
+  background-color: rgba(255, 255, 255, 0.5);
+  font-size: 10vw;
+  color: black;
+  /* margin: 0; */
+  /* width: 100%; */
+  /* position: absolute; */
+  /* top: 78%;
+  -ms-transform: translateY(-90%);
+  transform: translateY(-90%); */
+}
+
+button {
+  font-size: 8vw;
+}
