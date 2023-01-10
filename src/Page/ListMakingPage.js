@@ -151,7 +151,7 @@ const ListMakingPage = () => {
         method: "post",
         url: `${BACKEND_URL}/words`,
         // headers: {
-        //   Authorization: `Bearer ${getAccessToken}`,
+        //   Authorization: `Bearer ${accessToken}`,
         // },
         data: {
           wordlistId: selectedWordlistId,
