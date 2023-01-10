@@ -20,17 +20,12 @@ const Header = () => {
   let navigate = useNavigate();
 
   // user
-  const { user, getAccessTokenSilently, logout } = useAuth0();
-  // const [isRegistering, setRegistering] = useState(false);
-
-  // const [anchorEl, setAnchorEl] = useState(null);
-  // const open = Boolean(anchorEl);
-  // const handleClick = (e) => {
-  //   setAnchorEl(e.currentTarget);
-  // };
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
+  const {
+    user,
+    getAccessTokenSilently,
+    loginWithRedirect,
+    logout,
+  } = useAuth0();
 
   return (
     <div>
@@ -44,43 +39,31 @@ const Header = () => {
             <Menu.Target>
               <PersonOutlineOutlinedIcon id="basic-icon" />
             </Menu.Target>
-            <Menu.Dropdown>
-              <Menu.Item onClick={() => navigate("/userpage")}>
-                User Page
-              </Menu.Item>
+            {user ? (
+              <Menu.Dropdown>
+                <Menu.Item onClick={() => navigate("/userpage")}>
+                  User Page
+                </Menu.Item>
 
-              <Menu.Item onClick={() => navigate("/listmakingpage")}>
-                My lists
-              </Menu.Item>
-              <Menu.Item
-                onClick={() => logout({ returnTo: window.location.origin })}
-              >
-                Logout
-              </Menu.Item>
-            </Menu.Dropdown>
+                <Menu.Item onClick={() => navigate("/listmakingpage")}>
+                  My lists
+                </Menu.Item>
+                <Menu.Item
+                  onClick={() => logout({ returnTo: window.location.origin })}
+                >
+                  Logout
+                </Menu.Item>
+              </Menu.Dropdown>
+            ) : (
+              <Menu.Dropdown>
+                {" "}
+                <Menu.Item onClick={() => loginWithRedirect()}>
+                  {" "}
+                  Login{" "}
+                </Menu.Item>{" "}
+              </Menu.Dropdown>
+            )}
           </Menu>
-          {/* <Menu
-            id="basic-menu"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            MenuListProps={{
-              "aria-labelledby": "basic-icon",
-            }}
-          > */}
-          {/* {user && (
-              <MenuItem
-                onClick={() => {
-                  navigate("/userProfile");
-                  handleClose();
-                }}
-              >
-                My account
-              </MenuItem>
-            )} */}
-
-          {/* <MenuItem>{user ? <Logout /> : <Login />}</MenuItem> */}
-          {/* </Menu> */}
         </Grid.Col>
         <Grid></Grid>
         <Grid xs={0.5}></Grid>

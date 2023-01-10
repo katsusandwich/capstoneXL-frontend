@@ -8,6 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Home = () => {
   let navigate = useNavigate();
   const {
+    user,
     loginWithRedirect,
     // getAccessTokenSilently,
     // isAuthenticated,
@@ -22,9 +23,18 @@ const Home = () => {
           </div>
           <br />
           <div className="mainPageButton" align="middle">
-            <Button variant="text" onClick={() => loginWithRedirect()}>
-              Login / Sign Up
-            </Button>
+            {user ? (
+              <Button
+                variant="text"
+                onClick={() => navigate("/listmakingpage")}
+              >
+                Enter
+              </Button>
+            ) : (
+              <Button variant="text" onClick={() => loginWithRedirect()}>
+                Enter
+              </Button>
+            )}
           </div>
         </Grid2>
       </Grid2>
