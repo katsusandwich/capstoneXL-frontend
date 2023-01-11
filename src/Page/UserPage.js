@@ -41,7 +41,7 @@ const UserPage = () => {
           <Text className="userPageHeader">User info!</Text>
         </Container>
         <Container className="userPageHeader">
-          <Text>{isAuthenticated && user ? user.email : "No user found"}</Text>
+          <Text>{isAuthenticated && user ? user.sub : "No user found"}</Text>
         </Container>
       </Stack>
     </Center>

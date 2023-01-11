@@ -21,6 +21,7 @@ const Header = () => {
 
   // user
   const {
+    isAuthenticated,
     user,
     getAccessTokenSilently,
     loginWithRedirect,
@@ -30,7 +31,9 @@ const Header = () => {
   return (
     <div>
       <Grid className="header" columns={24}>
-        <Grid.Col span={19}></Grid.Col>
+        <Grid.Col span={19}>
+          {user ? `Welcome ${user.email}` : `Sign up!`}
+        </Grid.Col>
         <Grid.Col span={2}>
           <HomeIcon onClick={() => navigate("/")} />
         </Grid.Col>
