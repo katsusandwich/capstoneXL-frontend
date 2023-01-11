@@ -38,7 +38,7 @@ const Header = () => {
             sx={{ fontFamily: "Greycliff CF, sans-serif" }}
             fz="sm"
           >
-            {user ? `Welcome ${user.email}` : `Sign up!`}
+            {user ? `Welcome ${user.email}` : ``}
           </Text>
         </Grid.Col>
         <Grid.Col span={2}>
@@ -68,8 +68,7 @@ const Header = () => {
               <Menu.Dropdown>
                 {" "}
                 <Menu.Item onClick={() => loginWithRedirect()}>
-                  {" "}
-                  Login{" "}
+                  Login or sign up
                 </Menu.Item>{" "}
               </Menu.Dropdown>
             )}
