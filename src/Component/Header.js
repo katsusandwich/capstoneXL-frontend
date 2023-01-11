@@ -32,7 +32,14 @@ const Header = () => {
     <div>
       <Grid className="header" columns={24}>
         <Grid.Col span={19}>
-          {user ? `Welcome ${user.email}` : `Sign up!`}
+          <Text
+            variant="gradient"
+            gradient={{ from: "indigo", to: "cyan", deg: 45 }}
+            sx={{ fontFamily: "Greycliff CF, sans-serif" }}
+            fz="sm"
+          >
+            {user ? `Welcome ${user.email}` : `Sign up!`}
+          </Text>
         </Grid.Col>
         <Grid.Col span={2}>
           <HomeIcon onClick={() => navigate("/")} />
