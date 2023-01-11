@@ -10,29 +10,54 @@ const UserContext = React.createContext();
 function UserContextProvider({ children }) {
   const [userObject, setUserObject] = useState();
   const [userId, setUserId] = useState();
-  const [userAccessToken, setUserAccessToken] = useState();
 
   const { user, getAccessTokenSilently, isAuthenticated } = useAuth0();
 
-  //use a useEffect to check if user is authenticated, and if it is, grab the userId
+  //EMAIL VERSION use a useEffect to check if user is authenticated, and if it is, grab the userId
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     const accessToken = getAccessTokenSilently();
+  //     axios
+  //       .get(`${BACKEND_URL}/users/${user.email}`, {
+  //         headers: {
+  //           Authorization: `Bearer ${accessToken}`,
+  //         },
+  //       })
+  //       .then((res) => res.data)
+  //       .then((res) => {
+  //         console.log(res);
+  //         setUserObject(res);
+  //         return axios.get(`${BACKEND_URL}/users/${user.email}`, {
+  //           headers: {
+  //             Authorization: `Bearer ${accessToken}`,
+  //           },
+  //         });
+  //       })
+  //       .then((res) => res.data)
+  //       .then((res) => {
+  //         console.log(JSON.stringify(res));
+  //         setUserId(res.id);
+  //       });
+  //   }
+  // }, [isAuthenticated]);
 
+  //USERID VERSION BELOW
   useEffect(() => {
     if (isAuthenticated) {
       const accessToken = getAccessTokenSilently();
-      setUserAccessToken(accessToken);
       axios
-        .get(`${BACKEND_URL}/users/${user.email}`, {
+        .get(`${BACKEND_URL}/users/${user.sub}`, {
           headers: {
-            Authorization: `Bearer ${userAccessToken}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         })
         .then((res) => res.data)
         .then((res) => {
           console.log(res);
           setUserObject(res);
-          return axios.get(`${BACKEND_URL}/users/${user.email}`, {
+          return axios.get(`${BACKEND_URL}/users/${user.sub}`, {
             headers: {
-              Authorization: `Bearer ${userAccessToken}`,
+              Authorization: `Bearer ${accessToken}`,
             },
           });
         })
@@ -44,45 +69,13 @@ function UserContextProvider({ children }) {
     }
   }, [isAuthenticated]);
 
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     const accessToken = getAccessTokenSilently();
-  //     axios
-  //       .get(`${BACKEND_URL}/${user.email}`)
-  //       .then((res) => res.data)
-  //       .then((res) => {
-  //         console.log(res);
-  //         setUserObject(res);
-  //         setUserId(res.id);
-  //       });
-  //   }
-  // }, [isAuthenticated]);
-
   const value = {
     userObject,
     setUserObject,
     userId,
     setUserId,
-    userAccessToken,
-    setUserAccessToken,
   };
   // const value = { userObject, setUserObject };
-
-  // const getUserId = async () => {
-  //   try {
-  //     const accessToken = await getAccessTokenSilently();
-  //     const getUser = await axios({
-  //       url: `${BACKEND_URL}/${user.email}`,
-  //       headers: {
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //     });
-  //     setUserObject(getUser.data);
-  //     setUserAccessToken(accessToken);
-  //   } catch (err) {
-  //     throw new Error(err);
-  //   }
-  // };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
